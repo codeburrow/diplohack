@@ -1,12 +1,17 @@
 {
-    "name": "codeburrow/diplohack",
-    "description": "How can we make EU decision making more transparent?",
-    "license": "GNU GENERAL PUBLIC LICENSE",
-    "authors": [
-        {
-            "name": "Rizart Dokollari",
-            "email": "r.dokollari@gmail.com"
-        }
-    ],
-    "require": {}
+   "name": "codeburrow/diplohack",
+   "description": "How can we make EU decision making more transparent?",
+   "license": "GNU GENERAL PUBLIC LICENSE",
+   "authors": [
+	  {
+		 "name": "Rizart Dokollari",
+		 "email": "r.dokollari@gmail.com"
+	  }
+   ],
+   "require": {},
+   "autoload": {
+	  "psr-4": {
+		 "App\\": "app/"
+	  }
+   }
 }
