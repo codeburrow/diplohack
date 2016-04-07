@@ -5,3 +5,15 @@ Open data has the potential to unleash innovation and transform every sector of 
 ## Goal
 Implement idea on a web & android app.
 
+## Set up
+- Copy .env.example and add variables as needed.
+
+## Database
+### New table
+- Create a new migration similarly as with /database/migrations/UsersTableSeeder.php
+- Then on /database/migrations/DatabaseSeeder.php add the respective 'up' & 'down' functions.
+### Commands
+- `php database/commands/up` Creates all tables
+- `php database/commands/down` Drops all tables
+- `php database/commands/provision` Drops and recreates all tables
+
