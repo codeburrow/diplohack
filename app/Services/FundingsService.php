@@ -10,8 +10,8 @@ class ViewFundings extends DbManager
 	{
 		$query_fundings = "
 SELECT
-  f.title, f.description,
-  l.url, l.description
+  f.title, f.description as funding_description,
+  l.url, l.description as link_description
 FROM fundings              As f
 INNER JOIN fundings_links AS fl ON fl.funding_id     = f.id
 INNER JOIN links      AS  l ON fl.link_id = l.id;";
