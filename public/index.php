@@ -3,8 +3,9 @@
  * @author Rizart Dokollari <r.dokollari@gmail.com>
  * @since 4/7/16
  */
+use App\Controllers\Api\ApiDistrictsController;
 use App\Controllers\Api\ApiFundingsController;
-use App\Controllers\ApiDistrictsController;
+use App\Controllers\Api\ApiProfilesController;
 use App\Controllers\ExceptionsController;
 use App\Controllers\WelcomeController;
 use App\Kernel\Router;
@@ -19,6 +20,7 @@ $router->get('/', new WelcomeController, 'landingPage');
 // Api
 $router->get("/api/v1/fundings", new ApiFundingsController, 'getAll');
 $router->get('/api/v1/districts/list', new ApiDistrictsController, 'getList');
+$router->get('/api/v1/profiles/list', new ApiProfilesController(), 'getList');
 
 // 404
 $router->dispatch(new ExceptionsController(), 'notFound');
