@@ -4,10 +4,7 @@
  * @since 4/7/16
  */
 use App\Controllers\Api\ApiFundingsController;
-<<<<<<< HEAD
 use App\Controllers\ApiDistrictsController;
-=======
->>>>>>> e376c4932fb5486ee047a400946e1cbdf2f3abe2
 use App\Controllers\ExceptionsController;
 use App\Controllers\WelcomeController;
 use App\Kernel\Router;

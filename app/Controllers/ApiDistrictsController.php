@@ -29,9 +29,7 @@ class ApiDistrictsController extends ApiController
      */
     public function __construct()
     {
-        parent::__construct();
-
-        $this->districtService = new DistrictService;
+        $this->districtService = new DistrictService();
         $this->apiDistrictsListTransformer = new ApiDistrictsListTransformer();
     }
 
