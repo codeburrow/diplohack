@@ -32,7 +32,6 @@ class ApiFundingsController extends ApiController
         $this->fundingsService = new FundingService();
     }
 
-
     /**
      * @return string
      */
