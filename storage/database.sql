@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `diplohack` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `diplohack`;
 -- MySQL dump 10.13  Distrib 5.5.47, for debian-linux-gnu (x86_64)
 --
 -- Host: 192.168.10.10    Database: diplohack
@@ -25,7 +23,7 @@ DROP TABLE IF EXISTS `area_funding`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `area_funding` (
-  `id` int(11) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `area_id` int(11) NOT NULL,
   `funding_id` int(11) NOT NULL,
   `area_fundingcol` varchar(45) DEFAULT NULL,
@@ -54,7 +52,7 @@ DROP TABLE IF EXISTS `areas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `areas` (
-  `id` int(11) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `description` text,
   PRIMARY KEY (`id`)
@@ -78,7 +76,7 @@ DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `description` text,
   PRIMARY KEY (`id`)
@@ -102,7 +100,7 @@ DROP TABLE IF EXISTS `category_funding`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `category_funding` (
-  `id` int(11) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
   `funding_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -130,7 +128,7 @@ DROP TABLE IF EXISTS `districts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `districts` (
-  `id` int(11) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `description` text,
   PRIMARY KEY (`id`)
@@ -154,7 +152,7 @@ DROP TABLE IF EXISTS `funding_district`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `funding_district` (
-  `id` int(11) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `funding_id` int(11) NOT NULL,
   `district_id` int(11) NOT NULL,
   `funding_districtcol` varchar(45) DEFAULT NULL,
@@ -183,7 +181,7 @@ DROP TABLE IF EXISTS `funding_link`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `funding_link` (
-  `id` int(11) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `link_id` int(11) NOT NULL,
   `funding_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -211,7 +209,7 @@ DROP TABLE IF EXISTS `funding_profile`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `funding_profile` (
-  `id` int(11) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `funding_id` int(11) NOT NULL,
   `profile_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -239,7 +237,7 @@ DROP TABLE IF EXISTS `fundings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fundings` (
-  `id` int(11) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
   `description` text,
   PRIMARY KEY (`id`)
@@ -263,7 +261,7 @@ DROP TABLE IF EXISTS `links`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `links` (
-  `id` int(11) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `url` text NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id`)
@@ -287,7 +285,7 @@ DROP TABLE IF EXISTS `profiles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `profiles` (
-  `id` int(11) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `description` text,
   PRIMARY KEY (`id`),

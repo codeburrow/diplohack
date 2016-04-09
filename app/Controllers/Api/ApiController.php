@@ -36,7 +36,7 @@ class ApiController
     public function respondWithError($message)
     {
         return $this->respond([
-            'theError' => [
+            'error' => [
                 'message'     => $message,
                 'status_code' => $this->getStatusCode(),
             ],
@@ -80,7 +80,7 @@ class ApiController
      */
     public function respondNotFound($message = 'Not Found.')
     {
-        return $this->setStatusCode(422)->respondWithError($message);
+        return $this->setStatusCode(404)->respondWithError($message);
     }
 
     /**

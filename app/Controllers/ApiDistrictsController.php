@@ -40,8 +40,6 @@ class ApiDistrictsController extends ApiController
     {
         $districts = $this->districtService->getAll();
 
-        if (! $districts) return $this->respondNotFound();
-
-        return $this->apiDistrictsListTransformer->transformCollection($districts);
+        return $this->respondWithSuccess($this->apiDistrictsListTransformer->transformCollection($districts));
     }
 }

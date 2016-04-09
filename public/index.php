@@ -17,8 +17,8 @@ $router = new Router();
 $router->get('/', new WelcomeController, 'landingPage');
 
 // Api
-$router->get("/api/v1/fundings", new ApiFundingsController, 'getFundings');
-$router->get('api/v1/districts/list', new ApiDistrictsController, 'getList');
+$router->get('/api/v1/fundings', new ApiFundingsController, 'getFundings');
+$router->get('/api/v1/districts/list', new ApiDistrictsController, 'getList');
 
 // 404
 $router->dispatch(new ExceptionsController(), 'notFound');
