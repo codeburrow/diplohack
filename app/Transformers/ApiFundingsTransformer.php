@@ -6,18 +6,16 @@
  */
 class ApiFundingsTransformer extends Transformer
 {
-	/**
-	 * @param $item
-	 *
-	 * @return mixed
-	 */
-	public function transform($item)
-	{
-		return [
-			"url" => $item["url"],
-			"funding_description" => $item["funding_description"],
-			"title" => $item["title"],
-			"link_description" => $item["link_description"],
-		];
-	}
+    /**
+     * @param $item
+     *
+     * @return mixed
+     */
+    public function transform($item)
+    {
+        return [
+            "description" => $item["description"],
+            "title"       => $item["title"],
+        ];
+    }
 }

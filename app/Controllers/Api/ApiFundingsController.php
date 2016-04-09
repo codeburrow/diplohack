@@ -39,12 +39,24 @@ class ApiFundingsController extends ApiController
     {
         $fundings = $this->fundingsService->fetchAllFundings();
 
-        if (! $fundings) return $this->respondNotFound();
+        return $this->respondWithSuccess(
+            $this->apiFundingsTransformer->transformCollection($fundings)
+        );
+    }
+
+    /**
+     * Search all tables by user term.
+     */
+    public function search()
+    {
+        // TODO: add validator for terms
+
+        $term = $_GET['term'];
+
+        $fundings = $this->fundingsService->search($term);
 
         return $this->respondWithSuccess(
             $this->apiFundingsTransformer->transformCollection($fundings)
         );
-
-//		return $this->twig->render('welcome.twig', ['name' => 'Fabien']);
     }
 }
