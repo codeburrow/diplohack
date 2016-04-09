@@ -8,13 +8,13 @@ namespace App\Controllers;
 /**
  * Class WelcomeController.
  */
-class WelcomeController
+class WelcomeController extends Controller
 {
     /**
      * @return string
      */
     public function landingPage()
     {
-        return 'show landing page';
+        return $this->twig->render('welcome.twig', ['name' => 'Fabien']);
     }
 }

@@ -8,7 +8,7 @@ namespace App\Controllers;
 /**
  * Class ExceptionsController.
  */
-class ExceptionsController
+class ExceptionsController extends Controller
 {
     /**
      * @return string
