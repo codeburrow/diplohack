@@ -17,4 +17,9 @@ class WelcomeController extends Controller
     {
         return $this->twig->render('welcome.twig', ['name' => 'Fabien']);
     }
+
+    public function index()
+    {
+        return $this->twig->render('main.twig');
+    }
 }
