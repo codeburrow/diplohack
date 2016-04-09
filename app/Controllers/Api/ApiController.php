@@ -33,7 +33,7 @@ class ApiController
 	 *
 	 * @return mixed
 	 */
-	public function respondNoCoordinates($message = 'We could not Results.')
+	public function respondNoFound($message = 'We could not find any Results.')
 	{
 		return $this->setStatusCode(422)->respondWithError($message);
 	}
