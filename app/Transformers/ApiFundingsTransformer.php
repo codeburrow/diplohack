@@ -1,10 +1,10 @@
-<?php namespace CodeBurrow\Transformers;
+<?php namespace App\Transformers;
 
 /**
  * Abstract Class. Transforms collection array.
  *
  */
-class ApiCoordinatesTransformer extends Transformer
+class ApiFundingsTransformer extends Transformer
 {
 
 	/**
@@ -15,12 +15,8 @@ class ApiCoordinatesTransformer extends Transformer
 	public function transform($item)
 	{
 		return [
-			"ID"      => $item["ID"],
-			"routeID" => $item["routeID"],
-			"theDate" => $item["theDate"],
-			"theTime" => $item["theTime"],
-			"lat"     => $item["lat"],
-			"lng"     => $item["lng"],
+			"title"     => $item["title"],
+			"description"     => $item["description"],
 		];
 	}
 }

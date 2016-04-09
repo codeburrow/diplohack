@@ -3,7 +3,7 @@
 use App\Kernel\DbManager;
 use Database;
 
-class ViewFundings extends DbManager
+class FundingsService extends DbManager
 {
 
 	public function fetchAllFundings()
@@ -26,21 +26,15 @@ class ViewFundings extends DbManager
 		}
 
 		//fetching all the rows from the query
-		$row_fundings = $stmt_fundings ->fetchAll();
+		$row_fundings = $stmt_fundings->fetchAll();
 
 		if ( !empty($row_fundings) ) {
 			$response["success"] = 1;
 			$response["fundings"] = array();
 			$response["message"] = "Here are All the Fundings";
 
-			foreach ($row_routes as $row) {
-				$theroutes = array();
-				$theroutes["ID"] = $row["ID"];
-				$theroutes["nameGR"] = $row["nameGR"];
-				$theroutes["nameENG"] = $row["nameENG"];
-				$theroutes["school"] = $row["school"];
-				$theroutes["nickName"] = $row["nickName"];
-				array_push($response["routes"], $theroutes);
+			foreach ($row_fundings as $funding) {
+
 			}
 
 			return $response;
