@@ -6,16 +6,14 @@ use PDOException;
 
 class FundingService extends DbManager
 {
-    
+
     public function fetchAllFundings()
     {
-        $query_fundings = "
-SELECT
-  f.title, f.funding_description,
-  l.url, l.link_description
-FROM fundings              As f
-INNER JOIN fundings_links AS fl ON fl.funding_id     = f.id
-INNER JOIN links      AS  l ON fl.link_id = l.id;";
+        $query_fundings = "SELECT f.title, f.description AS funding_description,
+										l.url, l.description AS link_description
+							FROM fundings AS f
+							INNER JOIN funding_link AS fl ON fl.funding_id = f.id
+							INNER JOIN links AS l ON fl.link_id = l.id;";
 
         try {
             $db = $this->getConnection();
@@ -32,7 +30,10 @@ INNER JOIN links      AS  l ON fl.link_id = l.id;";
         }
 
         //fetching all the rows from the query
-        return $row_fundings = $stmt_fundings->fetchAll();
+	    $row_fundings = $stmt_fundings->fetchAll();
+	    var_dump($row_fundings);
+
+	    return $row_fundings;
 
     }
 }

@@ -39,8 +39,6 @@ class ApiFundingsController extends ApiController
     {
         $fundings = $this->fundingsService->fetchAllFundings();
 
-        if (! $fundings) return $this->respondNotFound();
-
         return $this->respondWithSuccess(
             $this->apiFundingsTransformer->transformCollection($fundings)
         );
