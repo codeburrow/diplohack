@@ -3,7 +3,9 @@
  * @author Antony Kalogeropoulos <anthonykalogeropoulos@gmail.com>
  * @since 4/7/16
  */
-namespace App\Controllers;
+namespace App\Controllers\Api;
+use App\Transformers\ApiFundingsTransformer;
+use CodeBurrow\Services\FundingsService;
 
 /**
  * Class WelcomeController.
@@ -16,11 +18,17 @@ class ApiFundingsController extends ApiController
 	private $apiFundingsTransformer;
 
 	/**
+	 * @var FundingsService
+	 */
+	private $fundingsService;
+
+	/**
 	 * FundingsController constructor.
 	 */
 	public function __construct()
 	{
 		$this->apiFundingsTransformer = new ApiFundingsTransformer();
+		$this->fundingsService = new FundingsService();
 	}
 
 
@@ -29,16 +37,12 @@ class ApiFundingsController extends ApiController
 	 */
 	public function getAll()
 	{
-		$this->postCoordinatesRequest->validate();
+		$fundings = $this->fundingsService->fetchAllFundings();
 
-		$location = $this->postCoordinatesRequest->getLocation();
-
-		$coordinates = $this->coordinatesService->getCoordinates($location);
-
-		if ( ! $coordinates ) return $this->respondNoCoordinates();
+		if ( ! $fundings ) return $this->respondNoFound();
 
 		return $this->respondWithSuccess(
-			$this->apiCoordinatesTransformer->transform($coordinates)
+			$this->apiFundingsTransformer->transformCollection($fundings)
 		);
 
 //		return $this->twig->render('welcome.twig', ['name' => 'Fabien']);
