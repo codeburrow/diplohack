@@ -19,8 +19,7 @@ class ApiDistrictsListTransformer extends Transformer
     {
         return [
             "id"          => $item["id"],
-            "name"        => $item["name"],
-            "description" => $item["description"],
+            "text"        => $item["name"],
         ];
     }
 }

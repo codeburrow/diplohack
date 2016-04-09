@@ -38,9 +38,7 @@
             <div class="form-group">
                 <label for="select" class="col-lg-2 control-label">Districts</label>
                 <div class="col-lg-10">
-                    <select class="form-control select2">
-                        <option>1</option>
-                        <option>2</option>
+                    <select class="form-control select2" id="districts">
                     </select>
                     <br>
                 </div>
@@ -73,10 +71,11 @@
 
 {% block scripts %}
     <script src="{{ '/vendor/js/select2.min.js' }}" type="text/javascript"></script>
-
     <script type="text/javascript">
         $(document).ready(function () {
             $(".select2").select2();
         });
     </script>
+
+    <script src="{{ '/js/search/district.js' }}" type="text/javascript"></script>
 {% endblock %}
