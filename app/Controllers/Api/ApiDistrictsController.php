@@ -3,11 +3,10 @@
  * @author Rizart Dokollari <r.dokollari@gmail.com>
  * @since 4/9/16
  */
-namespace App\Controllers;
+namespace App\Controllers\Api;
 
-use App\Controllers\Api\ApiController;
 use App\Services\DistrictService;
-use App\Transformers\ApiDistrictsListTransformer;
+use App\Transformers\ApiProfilesListTransformer;
 
 /**
  * Class ApiDistrictsController.
@@ -30,7 +29,7 @@ class ApiDistrictsController extends ApiController
     public function __construct()
     {
         $this->districtService = new DistrictService();
-        $this->apiDistrictsListTransformer = new ApiDistrictsListTransformer();
+        $this->apiDistrictsListTransformer = new ApiProfilesListTransformer();
     }
 
     /**
