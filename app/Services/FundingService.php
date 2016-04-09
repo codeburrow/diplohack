@@ -31,7 +31,6 @@ class FundingService extends DbManager
 
         //fetching all the rows from the query
 	    $row_fundings = $stmt_fundings->fetchAll();
-	    var_dump($row_fundings);
 
 	    return $row_fundings;
 
