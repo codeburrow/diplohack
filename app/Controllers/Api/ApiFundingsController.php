@@ -43,6 +43,6 @@ class ApiFundingsController extends ApiController
             $this->apiFundingsTransformer->transformCollection($fundings)
         );
 
-//		return $this->twig->render('welcome.twig', ['name' => 'Fabien']);
+//		return $this->twig->render('search.twig', ['name' => 'Fabien']);
     }
 }

@@ -16,8 +16,8 @@ require __DIR__.'/../app/bootstrap.php';
 
 $router = new Router();
 
-$router->get('/', new WelcomeController, 'landingPage');
-$router->get('/test', new WelcomeController, 'index');
+$router->get('/', new WelcomeController, 'welcome');
+$router->get('/search', new WelcomeController, 'search');
 
 // Api
 $router->get("/api/v1/fundings", new ApiFundingsController, 'getAll');

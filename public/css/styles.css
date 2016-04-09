@@ -40,10 +40,27 @@ a {
     transition: all .35s;
 }
 
-a:hover,
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: saddlebrown;
+    outline: 0;
+}
+
 a:focus {
     color: saddlebrown;
     outline: 0;
+}
+
+a:active {
+    text-decoration: none;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -131,7 +148,7 @@ footer {
 
 .navbar-header > .navbar-brand:hover,
 .navbar-header > .navbar-brand:focus {
-    color: #8b27b0;
+    color: #F6D9C2;
 }
 
 .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {

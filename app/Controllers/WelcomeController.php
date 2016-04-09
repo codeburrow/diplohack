@@ -13,13 +13,13 @@ class WelcomeController extends Controller
     /**
      * @return string
      */
-    public function landingPage()
+    public function search()
     {
-        return $this->twig->render('welcome.twig', ['name' => 'Fabien']);
+        return $this->twig->render('search.twig', ['name' => 'Fabien']);
     }
 
-    public function index()
+    public function welcome()
     {
-        return $this->twig->render('main.twig');
+        return $this->twig->render('welcome.twig');
     }
 }
