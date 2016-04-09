@@ -3,12 +3,18 @@
 use App\Kernel\DbManager;
 use Database;
 
-class FundingsService extends DbManager
+class ViewFundings extends DbManager
 {
 
 	public function fetchAllFundings()
 	{
-		$query_fundings = "SELECT * FROM fundings;";
+		$query_fundings = "
+SELECT
+  f.title, f.description,
+  l.url, l.description
+FROM fundings              As f
+INNER JOIN fundings_links AS fl ON fl.funding_id     = f.id
+INNER JOIN links      AS  l ON fl.link_id = l.id;";
 
 		try {
 			$db = $this->fetchAllFundings();

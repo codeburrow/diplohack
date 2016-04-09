@@ -3,6 +3,7 @@
  * @author Rizart Dokollari <r.dokollari@gmail.com>
  * @since 4/7/16
  */
+use App\Controllers\Api\ApiFundingsController;
 use App\Controllers\ExceptionsController;
 use App\Controllers\WelcomeController;
 use App\Kernel\Router;
