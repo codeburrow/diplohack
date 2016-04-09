@@ -18,7 +18,7 @@ INNER JOIN fundings_links AS fl ON fl.funding_id     = f.id
 INNER JOIN links      AS  l ON fl.link_id = l.id;";
 
         try {
-            $db = $this->fetchAllFundings();
+            $db = $this->getConnection();
             $stmt_fundings = $db->prepare($query_fundings);
             $result_fundings = $stmt_fundings->execute();
         } catch (PDOException $ex) {
@@ -32,23 +32,7 @@ INNER JOIN links      AS  l ON fl.link_id = l.id;";
         }
 
         //fetching all the rows from the query
-        $row_fundings = $stmt_fundings->fetchAll();
-
-        if (! empty($row_fundings)) {
-            $response["success"] = 1;
-            $response["fundings"] = [];
-            $response["message"] = "Here are All the Fundings";
-
-
-
-            return $response;
-        } else {
-            // no routes found
-            $response["success"] = 0;
-            $response["message"] = "No Routes Found";
-
-            return $response;
-        }
+        return $row_fundings = $stmt_fundings->fetchAll();
 
     }
 }
