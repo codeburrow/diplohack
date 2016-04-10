@@ -7,28 +7,7 @@
 {% endblock styles %}
 
 {% block content %}
-    <section id="two row">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="margin-top-0 text-primary">Search By Keyword</h2>
-                <hr class="primary">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12 col-md-12 text-center">
-                <form class="form" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                </form>
-            </div>
-        </div>
-        <br/>
-        <br/>
-        <br/>
-
-        <div class="container">
+    <div class="container">
             <div class="top30"></div>
             <div class="row">
                 <div class="top30"></div>
@@ -76,10 +55,28 @@
         </div>
         <br/>
 
+    <section id="two row">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="margin-top-0 text-primary">Search By Keyword</h2>
+                <hr class="primary">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 text-center">
+                <form class="form" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <div class="container">
         <div class="row">
+            <table class="table table-bordered">
             {% for funding in results %}
-                <table class="table table-bordered">
                     <tr>
                         <th>Title:</th>
                         <td>{{ funding.title }}</td>
@@ -97,8 +94,9 @@
                         </td>
 
                     </tr>
-                </table>
             {% endfor %}
+            </table>
+
         </div>
         </div>
     </section>
