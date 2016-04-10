@@ -1,0 +1,33 @@
+{
+   "status_code": 200,
+   "data": [
+	  {
+		 "title": "fund_title_1",
+		 "description": "fund_description_1",
+		 "links": [
+			{
+			   "url": "url_1",
+			   "description": "url_1_description"
+			},
+			{
+			   "url": "url_2",
+			   "description": "url_2_description"
+			}
+		 ]
+	  },
+	  {
+		 "title": "fund_title_2",
+		 "description": "fund_description_2",
+		 "links": [
+			{
+			   "url": "url_1",
+			   "description": "url_1_description"
+			},
+			{
+			   "url": "url_2",
+			   "description": "url_2_description"
+			}
+		 ]
+	  }
+   ]
+}
