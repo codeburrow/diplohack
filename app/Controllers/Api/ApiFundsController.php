@@ -172,6 +172,8 @@ class ApiFundsController extends ApiController
         $term = $_GET['term'];
 
         $funds = $this->fundsService->search($term);
+        var_dump($funds);exit;
+        $funds = $this->fundManipulator->concatenateLinks($funds);
 
         return $this->respondWithSuccess(
             $this->apifundsTransformer->transformCollection($funds)

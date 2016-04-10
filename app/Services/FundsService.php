@@ -2,6 +2,7 @@
 
 use App\Kernel\DbManager;
 use Database;
+use PDO;
 
 class FundsService extends DbManager
 {
@@ -25,16 +26,23 @@ class FundsService extends DbManager
 
     public function search($term)
     {
-//        $query =
-//            "SELECT funds.title, f.funding_description, link.url "
-//            "(SELECT content, title, 'msg' as type FROM messages WHERE content LIKE '%".
-//            $term."%' OR title LIKE '%".$term."%')
-//           UNION
-//           (SELECT content, title, 'topic' as type FROM topics WHERE content LIKE '%".
-//            $term."%' OR title LIKE '%".$term."%')
-//           UNIOnN
-//           (SELECT content, title, 'comment' as type FROM comments WHERE content LIKE '%".
-//            $term."%' OR title LIKE '%".$term."%')";
+        $query = "
+            SELECT funds.id, funds.title, funds.description, links.url
+            FROM `".getenv('DB_NAME')."`.`funds`
+            INNER JOIN fund_link ON fund_link.fund_id = funds.id
+            INNER JOIN links ON fund_link.link_id = links.id
+            WHERE funds.title LIKE '%:term%';
+            ";
+//            WHERE funds.title LIKE '%:term%' OR funds.description LIKE '%:term%' OR links.url LIKE '%:term%';
+
+        $statement = $this->getConnection()->prepare($query);
+        $statement->bindParam(':term', $term, PDO::PARAM_STR);
+
+        if (! $statement->execute()) {
+            return false;
+        }
+
+        return $statement->fetchAll();
     }
 }
 
