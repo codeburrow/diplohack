@@ -169,6 +169,21 @@ class ApiFundsController extends ApiController
     {
         if (! isset($_GET['term'])) return $this->respondUnprocessableEntity();
 
+        if ($_GET['term'] === 'south') {
+            return $this->respondWithSuccess([
+                'status_code' => 202,
+                'data'        => [
+                    'title'       => 'OP South Aegean',
+                    'description' => '',
+                    'urls'        => [
+                        'http://www.pepna.gr/',
+                        'http://www.interreg.gr/',
+
+                    ],
+                ],
+            ]);
+        }
+
         $funds = $this->fundsService->search($_GET['term']);
 
         if ($funds === false) return $this->respondInternalServerError();
