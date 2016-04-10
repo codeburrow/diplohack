@@ -33,7 +33,7 @@ CREATE TABLE `area_fund` (
   KEY `fk_area_fund_funding_id_idx` (`fund_id`),
   CONSTRAINT `fk_area_fund_fund_id` FOREIGN KEY (`fund_id`) REFERENCES `funds` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_area_fund_area_id` FOREIGN KEY (`area_id`) REFERENCES `areas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `area_fund` (
 
 LOCK TABLES `area_fund` WRITE;
 /*!40000 ALTER TABLE `area_fund` DISABLE KEYS */;
+INSERT INTO `area_fund` VALUES (1,221,241);
 /*!40000 ALTER TABLE `area_fund` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,31 +125,6 @@ LOCK TABLES `category_fund` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `districts`
---
-
-DROP TABLE IF EXISTS `districts`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `districts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `description` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `districts`
---
-
-LOCK TABLES `districts` WRITE;
-/*!40000 ALTER TABLE `districts` DISABLE KEYS */;
-INSERT INTO `districts` VALUES (1,'destrict1','description1'),(2,'district2','description2');
-/*!40000 ALTER TABLE `districts` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `fund_link`
 --
 
@@ -164,7 +140,7 @@ CREATE TABLE `fund_link` (
   KEY `fk_link_id_idx` (`link_id`),
   CONSTRAINT `fk_funding_id` FOREIGN KEY (`fund_id`) REFERENCES `funds` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_link_id` FOREIGN KEY (`link_id`) REFERENCES `links` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=611 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,7 +149,7 @@ CREATE TABLE `fund_link` (
 
 LOCK TABLES `fund_link` WRITE;
 /*!40000 ALTER TABLE `fund_link` DISABLE KEYS */;
-INSERT INTO `fund_link` VALUES (11,11,1),(21,81,91);
+INSERT INTO `fund_link` VALUES (11,11,1),(21,111,91),(31,81,91),(41,121,101),(51,131,111),(61,141,121),(71,151,131),(81,161,131),(91,171,141),(101,181,151),(111,191,161),(121,201,171),(131,211,181),(141,221,191),(151,231,201),(161,241,211),(171,251,221),(181,261,231),(191,271,241),(201,281,251),(211,291,261),(221,301,271),(231,291,281),(241,291,641),(251,291,291),(261,291,301),(271,311,311),(281,321,321),(291,331,331),(301,341,341),(311,351,351),(321,361,361),(331,371,371),(341,381,381),(351,391,391),(361,401,401),(371,411,411),(381,421,421),(391,431,431),(401,441,441),(411,441,451),(421,451,461),(431,461,471),(441,471,481),(451,481,491),(461,491,511),(471,501,521),(481,511,531),(491,641,491),(501,641,481),(511,641,471),(521,701,461),(531,711,451),(541,731,441),(551,721,451),(561,741,441),(571,641,411),(581,751,391),(591,641,381),(601,641,361);
 /*!40000 ALTER TABLE `fund_link` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,35 +176,6 @@ LOCK TABLES `funds` WRITE;
 /*!40000 ALTER TABLE `funds` DISABLE KEYS */;
 INSERT INTO `funds` VALUES (1,'OP Public Sector Reform',''),(91,'OP Human Resources Development, Education and Lifelong Learning',NULL),(101,'OP Rural Development',NULL),(111,'OP Maritime and Fisheries',NULL),(121,'OP Competitiveness, Entrepreneurship & Innovation',NULL),(131,'OP Transport, Infrastructure, Environment & Sustainable Development',NULL),(141,'OP Macedonia – Thrace',NULL),(151,'OP Central Macedonia',NULL),(161,'OP Western Macedonia',NULL),(171,'OP Epirus',NULL),(181,'OP Thessaly',NULL),(191,'OP Continental Greece',NULL),(201,'OP Attica',NULL),(211,'OP Ionian Islands',NULL),(221,'OP Peloponnesus',NULL),(231,'OP North Aegean',NULL),(241,'OP South Aegean',NULL),(251,'OP Crete',NULL),(261,'Interreg Greece - Bulgaria',NULL),(271,'Adrion Interreg',NULL),(281,'Greece - Cyprus',NULL),(291,'Greece - FYROM',NULL),(301,'Balkan-Mediterranean',NULL),(311,'Mediterreanean',NULL),(321,'Black Sea',NULL),(331,'Interreg Europe',NULL),(341,'Competitiveness of Enterprises and Small and Medium-sized Enterprises (COSME)',NULL),(351,'Connecting Europe Facility (CEF)',NULL),(361,'Horizon 2020\'s SME Instrument',NULL),(371,'Your Europe Business',NULL),(381,'H2020 SME Innovation Associate',NULL),(391,'Enterprise Europe Network',NULL),(401,'Fast Track to Innovation (FTI) Pilot',NULL),(411,'Horizon 2020 INNOSUP',NULL),(421,'Intellectual property',NULL),(431,'Common Agriculture Policy',NULL),(441,'Creative Europe - MEDIA',NULL),(451,'Creative Europe - CULTURE',NULL),(461,'Europe for Citizens',NULL),(471,'Horizon 2020 - Societal Challenges',NULL),(481,'Horizon 2020 - Smart, Green and Integrated Transport',NULL),(491,'Horizon 2020 - Secure, Clean and Efficient energy',NULL),(511,'EUROPEAID - International Cooperation and Development',NULL),(521,'ECHO - Humanitarian Aid and Civil Protection',NULL),(531,'Connecting Europe Facility (CEF) ',NULL),(541,'Erasmus + / KA2',NULL),(551,'Erasmus + / KA1',NULL),(561,'Erasmus + / KA3',NULL),(571,'Marie Sk?odowska-Curie Actions',NULL),(581,'Competitiveness of Enterprises and Small and Medium-sized Enterprises (COSME) - Erasmus for young entrepreneurs',NULL),(591,'H2020',NULL),(601,'European Research Council',NULL),(611,'Common Agriculture Policy',NULL),(621,'Employment and Social Innovation (EaSI)',NULL),(631,'LIFE+',NULL),(641,'Greece - Albania',NULL);
 /*!40000 ALTER TABLE `funds` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `funds_district`
---
-
-DROP TABLE IF EXISTS `funds_district`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `funds_district` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `funding_id` int(11) NOT NULL,
-  `district_id` int(11) NOT NULL,
-  `funding_districtcol` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_funding_district_funding_id_idx` (`funding_id`),
-  KEY `fk_funding_district_district_id_idx` (`district_id`),
-  CONSTRAINT `fk_funding_district_district_id` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_funding_district_funding_id` FOREIGN KEY (`funding_id`) REFERENCES `funds` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `funds_district`
---
-
-LOCK TABLES `funds_district` WRITE;
-/*!40000 ALTER TABLE `funds_district` DISABLE KEYS */;
-/*!40000 ALTER TABLE `funds_district` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -319,4 +266,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-10 13:18:57
+-- Dump completed on 2016-04-10 13:58:11

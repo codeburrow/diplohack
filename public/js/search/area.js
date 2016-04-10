@@ -5,13 +5,13 @@
 
 $(document).ready(function () {
     $.ajax({
-        url: "/api/v1/districts/list",
+        url: "/api/v1/areas/list",
         cache: true,
         success: function (request) {
 
             var response = jQuery.parseJSON(request);
 
-            $("#districts").select2({
+            $("#areas").select2({
                 data: response.data
             })
         }

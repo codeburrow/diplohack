@@ -6,7 +6,7 @@
 namespace App\Controllers\Api;
 
 use App\Services\CategoryService;
-use App\Services\DistrictService;
+use App\Services\AreaService;
 use App\Transformers\ApiCategoryListTransformer;
 
 /**
@@ -19,7 +19,7 @@ use App\Transformers\ApiCategoryListTransformer;
 class ApiCategoriesController extends ApiController
 {
     /**
-     * @var DistrictService
+     * @var AreaService
      */
     protected $categoryService;
     protected $apiCategoryListTransformer;

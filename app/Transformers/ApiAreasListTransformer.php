@@ -8,7 +8,7 @@ namespace App\Transformers;
 /**
  * Class ApiDistrictsListTransformer.
  */
-class ApiDistrictsListTransformer extends Transformer
+class ApiAreasListTransformer extends Transformer
 {
     /**
      * @param $item
@@ -18,8 +18,8 @@ class ApiDistrictsListTransformer extends Transformer
     public function transform($item)
     {
         return [
-            "id"          => $item["id"],
-            "text"        => $item["name"],
+            "id"   => $item["id"],
+            "text" => $item["name"],
         ];
     }
 }

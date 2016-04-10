@@ -4,16 +4,17 @@
  * @since 4/9/16
  */
 namespace App\Services;
+
 use App\Kernel\DbManager;
 
 /**
  * Class DistrictService.
  */
-class DistrictService extends DbManager
+class AreaService extends DbManager
 {
-    public function getAll()
+    public function get()
     {
-        $query = 'SELECT * FROM `'.getenv('DB_NAME').'`.`districts`';
+        $query = 'SELECT * FROM `'.getenv('DB_NAME').'`.`areas`';
 
         $statement = $this->getConnection()->prepare($query);
 
