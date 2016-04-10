@@ -15,8 +15,14 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/css/landing-zero-theme.css"/>
         <link rel="stylesheet" href="/css/styles.css"/>
+
     {% endblock head %}
     {% block styles %}{% endblock styles %}
+    <style>
+        #urlsTable:nth-child(2n) {
+            padding-bottom: 30px;
+        }
+    </style>
 </head>
 <body>
 {% block header %}{% endblock header %}

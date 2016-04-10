@@ -75,24 +75,24 @@
 
         <div class="container">
         <div class="row">
-            <table class="table table-bordered">
+            <table id="resultsTable" class="table table-bordered ">
             {% for funding in results %}
                     <tr>
-                        <th>Title:</th>
+                        <th rowspan="3" scope="rowgroup"> {{ loop.index }} </th>
+                        <th scope="row">Title:</th>
                         <td>{{ funding.title }}</td>
                     </tr>
                     <tr>
-                        <th>Description:</th>
-                        <td></td>
+                        <th scope="row">Description:</th>
+                        <td>{{ funding.description }}</td>
                     </tr>
-                    <tr>
-                        <th>Link:</th>
+                    <tr id="urlsTable">
+                        <th scope="row"> Link:</th>
                         <td>
                             {% for url in funding.urls %}
                                 <a class="list-group-item" href="{{ url }}">{{ url }}</a>
                             {% endfor %}
                         </td>
-
                     </tr>
             {% endfor %}
             </table>
