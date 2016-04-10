@@ -7,100 +7,102 @@
 {% endblock styles %}
 
 {% block content %}
-    <div class="container">
-            <div class="top30"></div>
-            <div class="row">
-                <div class="top30"></div>
-                <div class="col-lg-12 text-center">
-                    <h2 class="margin-top-0 text-primary">Search By Filters</h2>
-                    <hr class="primary">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 text-left">
-                    <form class="form-horizontal">
-                        <fieldset>
-
-                            <div class="form-group col-md-4">
-                                <label for="select" class="col-lg-2 control-label">Areas</label>
-                                <div class="col-lg-10">
-                                    <select class="form-control select2" id="areas">
-                                    </select>
-                                    <br>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label for="select" class="col-lg-2 control-label">Profiles</label>
-                                <div class="col-lg-10">
-                                    <select class="form-control select2" id="profiles">
-                                    </select>
-                                    <br>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label for="select" class="col-lg-2 control-label">Categories</label>
-                                <div class="col-lg-10">
-                                    <select class="form-control select2" id="categories">
-                                    </select>
-                                    <br>
-                                </div>
-                            </div>
-
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
+<section id="two row">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h2 class="margin-top-0 text-primary">Search By Keyword</h2>
+            <hr class="primary">
         </div>
-        <br/>
+    </div>
 
-    <section id="two row">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="margin-top-0 text-primary">Search By Keyword</h2>
-                <hr class="primary">
-            </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 text-center">
+            <form class="form" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" name="searchterm">
+                </div>
+                <button type="submit" class="btn btn-lg btn-default">Submit</button>
+            </form>
         </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
 
-        <div class="row">
-            <div class="col-lg-12 col-md-12 text-center">
-                <form class="form" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+    <div class="top30"></div>
+    <div class="row">
+        <div class="top30"></div>
+        <div class="col-lg-12 text-center">
+            <h2 class="margin-top-0 text-primary">Search By Filters</h2>
+            <hr class="primary">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 text-left">
+            <form class="form-horizontal">
+                <fieldset>
+
+                    <div class="form-group col-md-4">
+                        <label for="select" class="col-lg-2 control-label">Areas</label>
+                        <div class="col-lg-10">
+                            <select class="form-control select2" id="areas">
+                            </select>
+                            <br>
+                        </div>
                     </div>
-                </form>
+
+                    <div class="form-group col-md-4">
+                        <label for="select" class="col-lg-2 control-label">Profiles</label>
+                        <div class="col-lg-10">
+                            <select class="form-control select2" id="profiles">
+                            </select>
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="select" class="col-lg-2 control-label">Categories</label>
+                        <div class="col-lg-10">
+                            <select class="form-control select2" id="categories">
+                            </select>
+                            <br>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <br/>
+
+            <div class="container">
+                <div class="row">
+                    <table id="funds-table" class="table table-bordered ">
+                        {% for funding in results %}
+                            <tr>
+                                <th rowspan="3" scope="rowgroup"> {{ loop.index }} </th>
+                                <th scope="row">Title:</th>
+                                <td>{{ funding.title }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Description:</th>
+                                <td>{{ funding.description }}</td>
+                            </tr>
+                            <tr id="urlsTable">
+                                <th scope="row"> Link:</th>
+                                <td>
+                                    {% for url in funding.urls %}
+                                        <a class="list-group-item" href="{{ url }}">{{ url }}</a>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+
+                </div>
             </div>
-        </div>
 
-        <div class="container">
-        <div class="row">
-            <table id="resultsTable" class="table table-bordered ">
-            {% for funding in results %}
-                    <tr>
-                        <th rowspan="3" scope="rowgroup"> {{ loop.index }} </th>
-                        <th scope="row">Title:</th>
-                        <td>{{ funding.title }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Description:</th>
-                        <td>{{ funding.description }}</td>
-                    </tr>
-                    <tr id="urlsTable">
-                        <th scope="row"> Link:</th>
-                        <td>
-                            {% for url in funding.urls %}
-                                <a class="list-group-item" href="{{ url }}">{{ url }}</a>
-                            {% endfor %}
-                        </td>
-                    </tr>
-            {% endfor %}
-            </table>
-
-        </div>
-        </div>
-    </section>
-{% endblock %}
+    {% endblock %}
 
     {% block scripts %}
         <script src="{{ '/vendor/js/select2.min.js' }}" type="text/javascript"></script>
@@ -113,5 +115,5 @@
         <script src="{{ '/js/search/area.js' }}" type="text/javascript"></script>
         <script src="{{ '/js/search/profile.js' }}" type="text/javascript"></script>
         <script src="{{ '/js/search/category.js' }}" type="text/javascript"></script>
-        {#<script src="{{ '/js/search/display.js' }}" type="text/javascript"></script>#}
+        <script src="{{ '/js/search/input-listener.js' }}" type="text/javascript"></script>
     {% endblock %}
