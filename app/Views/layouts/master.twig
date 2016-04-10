@@ -35,7 +35,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="#first"><i class="ion-ios-analytics-outline"></i>
+            <a class="navbar-brand page-scroll" href="/"><i class="ion-ios-analytics-outline"></i>
                 Direct_Access</a>
         </div>
         <div class="navbar-collapse collapse" id="bs-navbar">
@@ -53,7 +53,9 @@
                 <li>
                     <a class="page-scroll" href="/apidoc">API</a>
                 </li>
-
+                <li>
+                    <a class="page-scroll" href="/mobile/android/app-debug.apk"><img style="max-height: 25px;" src="img/dd.png"/></a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -66,7 +68,45 @@
 <div class="container">
     {% block content %}{% endblock content %}
 </div>
+<div id="aboutModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h2 class="text-center">Direct Access</h2>
+                <h5 class="text-center">
+                    An open, free platform that makes your funding research as easy as it should be.
+                </h5>
+                <p class="text-justify">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis
+                    eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit,
+                    posuere a, pede.
 
+                    Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean
+                    dignissim pellentesque felis.
+                </p>
+                {#<p class="text-center"><a href="http://www.bootstrapzero.com">Download at BootstrapZero</a></p>#}
+                <br/>
+                <button class="btn btn-warning btn-lg center-block" data-dismiss="modal" aria-hidden="true"> OK
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="alertModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h2 class="text-center">Nice Job!</h2>
+                <p class="text-center">You clicked the button, but it doesn't actually go anywhere because this is
+                    only a demo.</p>
+                <p class="text-center"><a href="http://www.bootstrapzero.com">Learn more at BootstrapZero</a></p>
+                <br/>
+                <button class="btn btn-warning btn-lg center-block" data-dismiss="modal" aria-hidden="true">OK <i
+                            class="ion-android-close"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="{{ '/vendor/js/jquery-2.2.3.min.js' }}" type="text/javascript"></script>
 <script src="{{ '/vendor/js/bootstrap.min.js' }}" type="text/javascript"></script>
 {% block scripts %}{% endblock scripts %}
