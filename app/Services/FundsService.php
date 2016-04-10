@@ -5,15 +5,14 @@ use Database;
 
 class FundsService extends DbManager
 {
-    public function getAll()
+    public function get()
     {
         $query = "
             SELECT funds.id, funds.title, funds.description, links.url
             FROM `".getenv('DB_NAME')."`.`funds`
-            INNER JOIN funding_link ON funding_link.funding_id = funds.id
-            INNER JOIN links ON funding_link.link_id = links.id;
+            INNER JOIN fund_link ON fund_link.fund_id = funds.id
+            INNER JOIN links ON fund_link.link_id = links.id;
             ";
-
 
         $statement = $this->getConnection()->prepare($query);
 

@@ -1,11 +1,10 @@
-<<<<<<< HEAD
-CREATE DATABASE  IF NOT EXISTS `heroku_f1f86cdaba26a8d` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `heroku_f1f86cdaba26a8d`;
+CREATE DATABASE  IF NOT EXISTS `diplohack` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `diplohack`;
 -- MySQL dump 10.13  Distrib 5.5.47, for debian-linux-gnu (x86_64)
 --
--- Host: eu-cdbr-west-01.cleardb.com    Database: heroku_f1f86cdaba26a8d
+-- Host: 192.168.10.10    Database: diplohack
 -- ------------------------------------------------------
--- Server version	5.5.40-log
+-- Server version	5.7.11
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -34,7 +33,7 @@ CREATE TABLE `area_funding` (
   KEY `fk_area_funding_aread_id_idx` (`area_id`),
   KEY `fk_area_funding_funding_id_idx` (`funding_id`),
   CONSTRAINT `fk_area_funding_area_id` FOREIGN KEY (`area_id`) REFERENCES `areas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_area_funding_funding_id` FOREIGN KEY (`funding_id`) REFERENCES `fundings` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_area_funding_funding_id` FOREIGN KEY (`funding_id`) REFERENCES `funds` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -83,7 +82,7 @@ CREATE TABLE `categories` (
   `name` varchar(45) NOT NULL,
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +91,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,'category_name_1','category_description_1'),(11,'category_name_2','category_description_2');
+INSERT INTO `categories` VALUES (1,'category1','descrption1'),(2,'category2','description2');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +110,7 @@ CREATE TABLE `category_funding` (
   KEY `fk_category_funding_funding_id_idx` (`funding_id`),
   KEY `fk_category_funding_category_id_idx` (`category_id`),
   CONSTRAINT `fk_category_funding_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_category_funding_funding_id` FOREIGN KEY (`funding_id`) REFERENCES `fundings` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_category_funding_funding_id` FOREIGN KEY (`funding_id`) REFERENCES `funds` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -136,7 +135,7 @@ CREATE TABLE `districts` (
   `name` varchar(45) NOT NULL,
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,18 +144,72 @@ CREATE TABLE `districts` (
 
 LOCK TABLES `districts` WRITE;
 /*!40000 ALTER TABLE `districts` DISABLE KEYS */;
-INSERT INTO `districts` VALUES (1,'district1','description1'),(11,'districrt2',NULL);
+INSERT INTO `districts` VALUES (1,'destrict1','description1'),(2,'district2','description2');
 /*!40000 ALTER TABLE `districts` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `funding_district`
+-- Table structure for table `fund_link`
 --
 
-DROP TABLE IF EXISTS `funding_district`;
+DROP TABLE IF EXISTS `fund_link`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `funding_district` (
+CREATE TABLE `fund_link` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `link_id` int(11) NOT NULL,
+  `fund_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_funding_id_idx` (`fund_id`),
+  KEY `fk_link_id_idx` (`link_id`),
+  CONSTRAINT `fk_funding_id` FOREIGN KEY (`fund_id`) REFERENCES `funds` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_link_id` FOREIGN KEY (`link_id`) REFERENCES `links` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fund_link`
+--
+
+LOCK TABLES `fund_link` WRITE;
+/*!40000 ALTER TABLE `fund_link` DISABLE KEYS */;
+INSERT INTO `fund_link` VALUES (1,1,1),(3,2,2),(4,2,1);
+/*!40000 ALTER TABLE `fund_link` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `funds`
+--
+
+DROP TABLE IF EXISTS `funds`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `funds` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) NOT NULL,
+  `description` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `funds`
+--
+
+LOCK TABLES `funds` WRITE;
+/*!40000 ALTER TABLE `funds` DISABLE KEYS */;
+INSERT INTO `funds` VALUES (1,'funding_title_1','funding_1_description'),(2,'funding_2_title','funding_2_description');
+/*!40000 ALTER TABLE `funds` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `funds_district`
+--
+
+DROP TABLE IF EXISTS `funds_district`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `funds_district` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `funding_id` int(11) NOT NULL,
   `district_id` int(11) NOT NULL,
@@ -165,99 +218,45 @@ CREATE TABLE `funding_district` (
   KEY `fk_funding_district_funding_id_idx` (`funding_id`),
   KEY `fk_funding_district_district_id_idx` (`district_id`),
   CONSTRAINT `fk_funding_district_district_id` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_funding_district_funding_id` FOREIGN KEY (`funding_id`) REFERENCES `fundings` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_funding_district_funding_id` FOREIGN KEY (`funding_id`) REFERENCES `funds` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `funding_district`
+-- Dumping data for table `funds_district`
 --
 
-LOCK TABLES `funding_district` WRITE;
-/*!40000 ALTER TABLE `funding_district` DISABLE KEYS */;
-/*!40000 ALTER TABLE `funding_district` ENABLE KEYS */;
+LOCK TABLES `funds_district` WRITE;
+/*!40000 ALTER TABLE `funds_district` DISABLE KEYS */;
+/*!40000 ALTER TABLE `funds_district` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `funding_link`
+-- Table structure for table `funds_profile`
 --
 
-DROP TABLE IF EXISTS `funding_link`;
+DROP TABLE IF EXISTS `funds_profile`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `funding_link` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `link_id` int(11) NOT NULL,
-  `funding_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_funding_id_idx` (`funding_id`),
-  KEY `fk_link_id_idx` (`link_id`),
-  CONSTRAINT `fk_funding_id` FOREIGN KEY (`funding_id`) REFERENCES `fundings` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_link_id` FOREIGN KEY (`link_id`) REFERENCES `links` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `funding_link`
---
-
-LOCK TABLES `funding_link` WRITE;
-/*!40000 ALTER TABLE `funding_link` DISABLE KEYS */;
-INSERT INTO `funding_link` VALUES (1,1,1);
-/*!40000 ALTER TABLE `funding_link` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `funding_profile`
---
-
-DROP TABLE IF EXISTS `funding_profile`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `funding_profile` (
+CREATE TABLE `funds_profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `funding_id` int(11) NOT NULL,
   `profile_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_funding_profile_profile_id_idx` (`profile_id`),
   KEY `fk_funding_profile_funding_id_idx` (`funding_id`),
-  CONSTRAINT `fk_funding_profile_funding_id` FOREIGN KEY (`funding_id`) REFERENCES `fundings` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_funding_profile_funding_id` FOREIGN KEY (`funding_id`) REFERENCES `funds` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_funding_profile_profile_id` FOREIGN KEY (`profile_id`) REFERENCES `profiles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `funding_profile`
+-- Dumping data for table `funds_profile`
 --
 
-LOCK TABLES `funding_profile` WRITE;
-/*!40000 ALTER TABLE `funding_profile` DISABLE KEYS */;
-/*!40000 ALTER TABLE `funding_profile` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `fundings`
---
-
-DROP TABLE IF EXISTS `fundings`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `fundings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) NOT NULL,
-  `description` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `fundings`
---
-
-LOCK TABLES `fundings` WRITE;
-/*!40000 ALTER TABLE `fundings` DISABLE KEYS */;
-INSERT INTO `fundings` VALUES (1,'test','test');
-/*!40000 ALTER TABLE `fundings` ENABLE KEYS */;
+LOCK TABLES `funds_profile` WRITE;
+/*!40000 ALTER TABLE `funds_profile` DISABLE KEYS */;
+/*!40000 ALTER TABLE `funds_profile` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -272,7 +271,7 @@ CREATE TABLE `links` (
   `url` text NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,7 +280,7 @@ CREATE TABLE `links` (
 
 LOCK TABLES `links` WRITE;
 /*!40000 ALTER TABLE `links` DISABLE KEYS */;
-INSERT INTO `links` VALUES (1,'codeburrow.com','The BEST app ever!');
+INSERT INTO `links` VALUES (1,'url1','description1'),(2,'url2','description2');
 /*!40000 ALTER TABLE `links` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,7 +297,7 @@ CREATE TABLE `profiles` (
   `description` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -307,7 +306,7 @@ CREATE TABLE `profiles` (
 
 LOCK TABLES `profiles` WRITE;
 /*!40000 ALTER TABLE `profiles` DISABLE KEYS */;
-INSERT INTO `profiles` VALUES (1,'profile_name_1','description1'),(11,'profile_name_2','profile_description_2');
+INSERT INTO `profiles` VALUES (1,'profile1','description1'),(2,'profile2','description2');
 /*!40000 ALTER TABLE `profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -320,95 +319,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-09 20:19:58
-=======
-CREATE TABLE area_funding
-(
-  id INT(11) PRIMARY KEY NOT NULL,
-  area_id INT(11) NOT NULL,
-  funding_id INT(11) NOT NULL,
-  area_fundingcol VARCHAR(45),
-  CONSTRAINT fk_area_funding_area_id FOREIGN KEY (area_id) REFERENCES areas (id),
-  CONSTRAINT fk_area_funding_funding_id FOREIGN KEY (funding_id) REFERENCES fundings (id)
-);
-CREATE INDEX fk_area_funding_aread_id_idx ON area_funding (area_id);
-CREATE INDEX fk_area_funding_funding_id_idx ON area_funding (funding_id);
-CREATE TABLE areas
-(
-  id INT(11) PRIMARY KEY NOT NULL,
-  name VARCHAR(45) NOT NULL,
-  description TEXT
-);
-CREATE TABLE categories
-(
-  id INT(11) PRIMARY KEY NOT NULL,
-  name VARCHAR(45) NOT NULL,
-  description TEXT
-);
-CREATE TABLE category_funding
-(
-  id INT(11) PRIMARY KEY NOT NULL,
-  category_id INT(11) NOT NULL,
-  funding_id INT(11) NOT NULL,
-  CONSTRAINT fk_category_funding_category_id FOREIGN KEY (category_id) REFERENCES categories (id),
-  CONSTRAINT fk_category_funding_funding_id FOREIGN KEY (funding_id) REFERENCES fundings (id)
-);
-CREATE INDEX fk_category_funding_category_id_idx ON category_funding (category_id);
-CREATE INDEX fk_category_funding_funding_id_idx ON category_funding (funding_id);
-CREATE TABLE districts
-(
-  id INT(11) PRIMARY KEY NOT NULL,
-  name VARCHAR(45) NOT NULL,
-  description TEXT
-);
-CREATE TABLE funding_district
-(
-  id INT(11) PRIMARY KEY NOT NULL,
-  funding_id INT(11) NOT NULL,
-  district_id INT(11) NOT NULL,
-  funding_districtcol VARCHAR(45),
-  CONSTRAINT fk_funding_district_district_id FOREIGN KEY (district_id) REFERENCES districts (id),
-  CONSTRAINT fk_funding_district_funding_id FOREIGN KEY (funding_id) REFERENCES fundings (id)
-);
-CREATE INDEX fk_funding_district_district_id_idx ON funding_district (district_id);
-CREATE INDEX fk_funding_district_funding_id_idx ON funding_district (funding_id);
-CREATE TABLE funding_link
-(
-  id INT(11) PRIMARY KEY NOT NULL,
-  link_id INT(11) NOT NULL,
-  funding_id INT(11) NOT NULL,
-  CONSTRAINT fk_funding_id FOREIGN KEY (funding_id) REFERENCES fundings (id),
-  CONSTRAINT fk_link_id FOREIGN KEY (link_id) REFERENCES links (id)
-);
-CREATE INDEX fk_funding_id_idx ON funding_link (funding_id);
-CREATE INDEX fk_link_id_idx ON funding_link (link_id);
-CREATE TABLE funding_profile
-(
-  id INT(11) PRIMARY KEY NOT NULL,
-  funding_id INT(11) NOT NULL,
-  profile_id INT(11) NOT NULL,
-  CONSTRAINT fk_funding_profile_funding_id FOREIGN KEY (funding_id) REFERENCES fundings (id),
-  CONSTRAINT fk_funding_profile_profile_id FOREIGN KEY (profile_id) REFERENCES profiles (id)
-);
-CREATE INDEX fk_funding_profile_funding_id_idx ON funding_profile (funding_id);
-CREATE INDEX fk_funding_profile_profile_id_idx ON funding_profile (profile_id);
-CREATE TABLE fundings
-(
-  id INT(11) PRIMARY KEY NOT NULL,
-  title VARCHAR(45) NOT NULL,
-  description TEXT
-);
-CREATE TABLE links
-(
-  id INT(11) PRIMARY KEY NOT NULL,
-  url TEXT NOT NULL,
-  description TEXT NOT NULL
-);
-CREATE TABLE profiles
-(
-  id INT(11) PRIMARY KEY NOT NULL,
-  name VARCHAR(45) NOT NULL,
-  description TEXT
-);
-CREATE UNIQUE INDEX name_UNIQUE ON profiles (name);
->>>>>>> ba6e2e8625360ef6e583bf2715d57688df7fc297
+-- Dump completed on 2016-04-10  9:45:52

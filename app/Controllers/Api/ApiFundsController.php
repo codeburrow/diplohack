@@ -45,13 +45,17 @@ class ApiFundsController extends ApiController
     }
 
     /**
+     * Get all funds.
+     *
      * @return string
      */
-    public function getAll()
+    public function get()
     {
         $data = [];
 
-        $data['funds'] = $this->fundsService->getAll();
+        $data['funds'] = $this->fundsService->get();
+        var_dump($data);
+        exit;
         $data['urls'] = $this->urlService->getAll();
 
         $funds = $this->fundManipulator->simplify($data);
