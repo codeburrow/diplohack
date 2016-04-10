@@ -19,23 +19,24 @@ $(document).ready(function () {
                 $("#funds-table").empty();
 
                 $.each(funds, function (i, item) {
-                    var urls;
-                    $.each(item.urls, function (i, item) {
-                        urls = $('<tr>').append(
+                    var urls = $.each(item.urls, function (i, item) {
+                        console.log(item);
+                        urls += $('<tr>').append(
                             $('<td>').text('Link'),
-                            $('<td>').text('<a class="list-group-item" href="' + item.url + '">' + item.url + '</a>')
+                            $('<td>').append("<a href='#' id='RemoveTier'>Delete tier</a>")
                         );
                     });
 
-                    console.log(item);
+                    console.log(urls);
+
 
                     var fund = $('<tr>').append(
                         $('<td>').text('Title'),
-                        $('<td>').text(item.name),
+                        $('<td>').text(item.title),
                         $('<td>').text('Description'),
                         $('<td>').text(item.content),
                         $('<td>').text('Urls'),
-                        $('<td>').html(urls)
+                        $('<td>').append(urls)
                     );
 
                     $("#funds-table").append(fund);
