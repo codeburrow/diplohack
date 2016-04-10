@@ -22,7 +22,7 @@ $router->get('/search', new WelcomeController, 'search');
 // Api
 $router->get('/api/v1/funds', new ApiFundsController, 'get');
 $router->get('/api/v1/funds/search', new ApiFundsController, 'search');
-$router->get('/api/v1/areas/list', new ApiAreasController, 'get');
+$router->get('/api/v1/areas/list', new ApiAreasController, 'getList');
 $router->get('/api/v1/profiles/list', new ApiProfilesController(), 'getList');
 $router->get('/api/v1/categories/list', new ApiCategoriesController(), 'getList');
 

@@ -36,7 +36,7 @@ class ApiAreasController extends ApiController
     /**
      * @return array
      */
-    public function get()
+    public function getList()
     {
         $area = $this->areaService->get();
 
