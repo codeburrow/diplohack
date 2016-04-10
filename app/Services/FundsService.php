@@ -31,7 +31,9 @@ class FundsService extends DbManager
             FROM `".getenv('DB_NAME')."`.`funds`
             INNER JOIN fund_link ON fund_link.fund_id = funds.id
             INNER JOIN links ON fund_link.link_id = links.id
-            WHERE funds.title LIKE :term OR funds.description LIKE :term OR links.url LIKE :term;
+            INNER JOIN areas ON area_fund.fund_id = fund.id
+            WHERE funds.title LIKE :term OR funds.description LIKE :term OR links.url LIKE :term 
+            OR areas.name LIKE :term OR areas.description LIKE :term ;
             ";
 
         $statement = $this->getConnection()->prepare($query);

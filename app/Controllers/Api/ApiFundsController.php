@@ -169,9 +169,12 @@ class ApiFundsController extends ApiController
     {
         if (! isset($_GET['term'])) return $this->respondUnprocessableEntity();
 
-        $term = $_GET['term'];
+        $funds = $this->fundsService->search($_GET['term']);
 
-        $funds = $this->fundsService->search($term);
+        var_dump($funds);
+        exit;
+        if ($funds === false) return $this->respondInternalServerError();
+
         $funds = $this->fundManipulator->concatenateLinks($funds);
 
         return $this->respondWithSuccess(
