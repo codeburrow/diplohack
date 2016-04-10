@@ -1,10 +1,9 @@
 <?php namespace App\Transformers;
 
 /**
- * Abstract Class. Transforms collection array.
- *
+ * Class ApiFundTransformer.
  */
-class ApiFundingsTransformer extends Transformer
+class ApiFundTransformer extends Transformer
 {
     /**
      * @param $item
@@ -14,7 +13,9 @@ class ApiFundingsTransformer extends Transformer
     public function transform($item)
     {
         return [
+            "id"          => $item["id"],
             "description" => $item["description"],
+            "url"         => $item["url"],
             "title"       => $item["title"],
         ];
     }

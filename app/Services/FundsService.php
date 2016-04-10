@@ -3,15 +3,14 @@
 use App\Kernel\DbManager;
 use Database;
 
-class FundingService extends DbManager
+class FundsService extends DbManager
 {
-
-    public function fetchAllFundings()
+    public function getAll()
     {
         $query = "
-            SELECT fundings.title, fundings.description, links.url
-            FROM fundings
-            INNER JOIN funding_link ON funding_link.funding_id = fundings.id
+            SELECT funds.id, funds.title, funds.description, links.url
+            FROM `".getenv('DB_NAME')."`.`funds`
+            INNER JOIN funding_link ON funding_link.funding_id = funds.id
             INNER JOIN links ON funding_link.link_id = links.id;
             ";
 
@@ -28,7 +27,7 @@ class FundingService extends DbManager
     public function search($term)
     {
 //        $query =
-//            "SELECT fundings.title, f.funding_description, link.url "
+//            "SELECT funds.title, f.funding_description, link.url "
 //            "(SELECT content, title, 'msg' as type FROM messages WHERE content LIKE '%".
 //            $term."%' OR title LIKE '%".$term."%')
 //           UNION
