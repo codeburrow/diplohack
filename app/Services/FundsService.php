@@ -33,8 +33,10 @@ class FundsService extends DbManager
             INNER JOIN links ON fund_link.link_id = links.id
             INNER JOIN area_fund ON area_fund.fund_id = funds.id
             INNER JOIN areas ON area_fund.area_id = areas.id
-            WHERE funds.title LIKE :term OR funds.description LIKE :term OR links.url LIKE :term 
+            INNER JOIN category_fund ON category_fund.fund_id = funds.id
+            INNER JOIN categories ON category_fund.category_id = categories.id
             OR areas.name LIKE :term OR areas.description LIKE :term ;
+            OR categories.name LIKE :term OR categories.description LIKE :term ;
             ";
 
         $statement = $this->getConnection()->prepare($query);
