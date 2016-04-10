@@ -171,15 +171,12 @@ class ApiFundsController extends ApiController
 
         if ($_GET['term'] === 'south') {
             return $this->respondWithSuccess([
-                'status_code' => 202,
-                'data'        => [
-                    'title'       => 'OP South Aegean',
-                    'description' => '',
-                    'urls'        => [
-                        'http://www.pepna.gr/',
-                        'http://www.interreg.gr/',
+                'title'       => 'OP South Aegean',
+                'description' => '',
+                'urls'        => [
+                    'http://www.pepna.gr/',
+                    'http://www.interreg.gr/',
 
-                    ],
                 ],
             ]);
         }
