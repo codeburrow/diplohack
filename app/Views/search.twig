@@ -80,10 +80,10 @@
                 <a href="#" class="list-group-item">
                     <table class="table table-bordered">
                         <tbody>
-                        {% for funding in funds %}
+                        {% for funding in results %}
                             <tr>
                                 <th>Title:</th>
-                                <li>{{ user.username|e }}</li>
+                                <li>{{ funding.title }}</li>
                             </tr>
                             <tr>
                                 <th>Description:</th>
@@ -114,5 +114,5 @@
         <script src="{{ '/js/search/area.js' }}" type="text/javascript"></script>
         <script src="{{ '/js/search/profile.js' }}" type="text/javascript"></script>
         <script src="{{ '/js/search/category.js' }}" type="text/javascript"></script>
-        <script src="{{ '/js/search/display.js' }}" type="text/javascript"></script>
+        {#<script src="{{ '/js/search/display.js' }}" type="text/javascript"></script>#}
     {% endblock %}
