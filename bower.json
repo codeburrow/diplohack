@@ -1,0 +1,22 @@
+{
+  "name": "codeburrow/diplohack",
+  "homepage": "https://github.com/codeburrow/diplohack",
+  "authors": [
+    "Rizart Dokollari <r.dokollari@gmail.com>"
+  ],
+  "description": "Find greek funds based on the experience of professional relative to the field.",
+  "main": "public/index.php",
+  "moduleType": [],
+  "keywords": [
+    "funds",
+    "search"
+  ],
+  "license": "GNU GENERAL PUBLIC LICENSE",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
