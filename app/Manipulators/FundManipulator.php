@@ -18,6 +18,8 @@ class FundManipulator
      */
     public function concatenateLinks($funds)
     {
+        $newFunds = [];
+
         foreach ($funds as $fund) {
             $fundId = $fund['id'];
 
