@@ -21,7 +21,6 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search">
                     </div>
-                    <button type="submit" class="btn btn-lg btn-default">Submit</button>
                 </form>
             </div>
         </div>
@@ -75,33 +74,32 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="table table-striped">
-                <a href="#" class="list-group-item">
-                    <table class="table table-bordered">
-                        <tbody>
-                        
-                        {% for funding in results %}
-                            <tr>
-                                <th>Title:</th>
-                                <td>{{ funding.title }}</td>
-                            </tr>
-                            <tr>
-                                <th>Description:</th>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Link:</td>
-                                {%  for url in funding.urls %}
-                                <td>{{ url }}</td>
-                                {% endfor %}
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+        <br/>
 
-                </a>
-            </div>
+        <div class="container">
+        <div class="row">
+            {% for funding in results %}
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Title:</th>
+                        <td>{{ funding.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description:</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Link:</th>
+                        <td>
+                            {% for url in funding.urls %}
+                                <a class="list-group-item" href="{{ url }}">{{ url }}</a>
+                            {% endfor %}
+                        </td>
+
+                    </tr>
+                </table>
+            {% endfor %}
+        </div>
         </div>
     </section>
 {% endblock %}
