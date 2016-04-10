@@ -80,18 +80,21 @@
                 <a href="#" class="list-group-item">
                     <table class="table table-bordered">
                         <tbody>
+                        
                         {% for funding in results %}
                             <tr>
                                 <th>Title:</th>
-                                <li>{{ funding.title }}</li>
+                                <td>{{ funding.title }}</td>
                             </tr>
                             <tr>
                                 <th>Description:</th>
-                                <li>{{ user.username|e }}</li>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Link:</td>
-                                <li>{{ user.username|e }}</li>
+                                {%  for url in funding.urls %}
+                                <td>{{ url }}</td>
+                                {% endfor %}
                             </tr>
                         {% endfor %}
                         </tbody>
