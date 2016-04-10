@@ -171,8 +171,6 @@ class ApiFundsController extends ApiController
 
         $funds = $this->fundsService->search($_GET['term']);
 
-        var_dump($funds);
-        exit;
         if ($funds === false) return $this->respondInternalServerError();
 
         $funds = $this->fundManipulator->concatenateLinks($funds);
