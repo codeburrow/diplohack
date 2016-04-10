@@ -19,12 +19,25 @@ $(document).ready(function () {
                 $("#funds-table").empty();
 
                 $.each(funds, function (i, item) {
+                    var urls;
+                    $.each(item.urls, function (i, item) {
+                        urls = $('<tr>').append(
+                            $('<td>').text('Link'),
+                            $('<td>').text('<a class="list-group-item" href="' + item.url + '">' + item.url + '</a>')
+                        );
+                    });
+
                     console.log(item);
+
                     var fund = $('<tr>').append(
-                        $('<td>').text(item.rank),
+                        $('<td>').text('Title'),
+                        $('<td>').text(item.name),
+                        $('<td>').text('Description'),
                         $('<td>').text(item.content),
-                        $('<td>').text(item.UID)
+                        $('<td>').text('Urls'),
+                        $('<td>').html(urls)
                     );
+
                     $("#funds-table").append(fund);
                 });
 
