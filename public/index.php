@@ -3,8 +3,8 @@
  * @author Rizart Dokollari <r.dokollari@gmail.com>
  * @since 4/7/16
  */
-use App\Controllers\Api\ApiCategoriesController;
 use App\Controllers\Api\ApiAreasController;
+use App\Controllers\Api\ApiCategoriesController;
 use App\Controllers\Api\ApiFundsController;
 use App\Controllers\Api\ApiProfilesController;
 use App\Controllers\ExceptionsController;

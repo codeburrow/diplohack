@@ -27,7 +27,7 @@ class FundsService extends DbManager
     public function search($term)
     {
         $query = "
-            SELECT DISTINCT funds.id, funds.title, funds.description, links.url
+            SELECT funds.id, funds.title, funds.description, links.url
             FROM `".getenv('DB_NAME')."`.`funds`
             INNER JOIN fund_link ON fund_link.fund_id = funds.id
             INNER JOIN links ON fund_link.link_id = links.id
