@@ -75,38 +75,26 @@
     </div>
     <br/>
 
-    <section id="two row">
-        <div class="row">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 text-center">
-                    <form class="form" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                    </form>
-                </div>
-            </div>
-
             <div class="container">
                 <div class="row">
-                    <table class="table table-bordered" id="funds-table">
+                    <table id="funds-table" class="table table-bordered ">
                         {% for funding in results %}
                             <tr>
-                                <th>Title:</th>
+                                <th rowspan="3" scope="rowgroup"> {{ loop.index }} </th>
+                                <th scope="row">Title:</th>
                                 <td>{{ funding.title }}</td>
                             </tr>
                             <tr>
-                                <th>Description:</th>
-                                <td></td>
+                                <th scope="row">Description:</th>
+                                <td>{{ funding.description }}</td>
                             </tr>
-                            <tr>
-                                <th>Link:</th>
+                            <tr id="urlsTable">
+                                <th scope="row"> Link:</th>
                                 <td>
                                     {% for url in funding.urls %}
                                         <a class="list-group-item" href="{{ url }}">{{ url }}</a>
                                     {% endfor %}
                                 </td>
-
                             </tr>
                         {% endfor %}
                     </table>
@@ -114,8 +102,6 @@
                 </div>
             </div>
 
-        </div>
-    </section>
     {% endblock %}
 
     {% block scripts %}
