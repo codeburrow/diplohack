@@ -75,26 +75,6 @@ class ApiController
     }
 
     /**
-     * @api           {any} /api/non-existent-url 404
-     *
-     * @apiPermission none
-     * @apiVersion    1.0.0
-     * @apiName       RequestResource
-     * @apiGroup      Exceptions
-     * @apiExample {curl} Example usage:
-     *      curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET "http://api-clothesai.herokuapp.com/api/non-existent" | json
-     *
-     * @apiSuccessExample {json} NotFound-Response:
-     *     HTTP/1.1 404 Not Found
-     *     {
-     *          "error": {
-     *              "message": "Not Found. See http://api-clothesai.herokuapp.com/doc",
-     *              "status_code": 404
-     *          }
-     *     }
-     */
-
-    /**
      * @param string $message
      *
      * @return mixed

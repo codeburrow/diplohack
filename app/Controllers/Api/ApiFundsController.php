@@ -44,6 +44,51 @@ class ApiFundsController extends ApiController
         $this->fundManipulator = new FundManipulator();
     }
 
+
+    /**
+     * @api            {get} api/v1/funds
+     * @apiPermission  none
+     * @apiVersion     1.0.0
+     * @apiName        GetFunds
+     * @apiGroup       Funds
+     * @apiDescription Fetch list, with funds.
+     * @apiExample {curl} Example usage:
+     *
+     * curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET "http://diplohack.herokuapp.com/api/v1/funds"
+     *
+     * @apiSuccess {String[]} funds The array with funds.
+     * @apiSuccess {String} title Title of funding.
+     * @apiSuccess {String} description The description of a fund.
+     * @apiSuccess {String[]} urls The array with urls.
+     *
+     * @apiSuccessExample {json} Success-Response:
+     *      HTTP/1.1 200 OK
+     *      {
+     *          "data" :  [
+     *              {
+     *                  "title": "Funding Title",
+     *                  "description": "Funding Description",
+     *                  "url": [
+     *                      {
+     *                          "url1",
+     *                          "url2",
+     *                      }
+     *                  ]
+     *              },
+     *              {
+     *                  "title": "Funding Title 2",
+     *                  "description": "Funding Description 2",
+     *                  "url": [
+     *                      {
+     *                          "url1",
+     *                          "url2",
+     *                      }
+     *                  ]
+     *              }
+     *          ],
+     *      }
+     */
+
     /**
      * Get all funds.
      *
@@ -65,7 +110,7 @@ class ApiFundsController extends ApiController
      */
     public function search()
     {
-        // TODO: add validator for terms
+        if (! isset($_GET['term'])) return $this->respondUnprocessableEntity();
 
         $term = $_GET['term'];
 

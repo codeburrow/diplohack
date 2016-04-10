@@ -1,33 +1,66 @@
 [
   {
-    "type": "any",
-    "url": "/api/non-existent-url",
-    "title": "404",
+    "type": "get",
+    "url": "api/v1/funds",
+    "title": "",
     "permission": [
       {
         "name": "none"
       }
     ],
     "version": "1.0.0",
-    "name": "RequestResource",
-    "group": "Exceptions",
+    "name": "GetFunds",
+    "group": "Funds",
+    "description": "<p>Fetch list, with funds.</p>",
     "examples": [
       {
         "title": "Example usage:",
-        "content": "curl -i -H \"Accept: application/json\" -H \"Content-Type: application/json\" -X GET \"http://api-clothesai.herokuapp.com/api/non-existent\" | json",
+        "content": "\ncurl -i -H \"Accept: application/json\" -H \"Content-Type: application/json\" -X GET \"http://diplohack.herokuapp.com/api/v1/funds\"",
         "type": "curl"
       }
     ],
     "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String[]",
+            "optional": false,
+            "field": "funds",
+            "description": "<p>The array with funds.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "title",
+            "description": "<p>Title of funding.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String[]",
+            "optional": false,
+            "field": "urls",
+            "description": "<p>The array with urls.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>The description of a fund.</p>"
+          }
+        ]
+      },
       "examples": [
         {
-          "title": "NotFound-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n     \"error\": {\n         \"message\": \"Not Found. See http://api-clothesai.herokuapp.com/doc\",\n         \"status_code\": 404\n     }\n}",
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"data\" :  [\n        {\n            \"title\": \"Funding Title\",\n            \"description\": \"Funding Description\",\n            \"url\": [\n                {\n                    \"url1\",\n                    \"url2\",\n                }\n            ]\n        },\n        {\n            \"title\": \"Funding Title 2\",\n            \"description\": \"Funding Description 2\",\n            \"url\": [\n                {\n                    \"url1\",\n                    \"url2\",\n                }\n            ]\n        }\n    ],\n}",
           "type": "json"
         }
       ]
     },
-    "filename": "app/Controllers/Api/ApiController.php",
-    "groupTitle": "Exceptions"
+    "filename": "app/Controllers/Api/ApiFundsController.php",
+    "groupTitle": "Funds"
   }
 ]

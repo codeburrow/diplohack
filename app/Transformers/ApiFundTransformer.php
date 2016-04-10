@@ -13,9 +13,9 @@ class ApiFundTransformer extends Transformer
     public function transform($item)
     {
         return [
+            "title"       => $item["title"],
             "description" => $item["description"],
             "urls"        => $item["urls"],
-            "title"       => $item["title"],
         ];
     }
 }
