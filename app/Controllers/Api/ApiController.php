@@ -8,6 +8,7 @@ namespace App\Controllers\Api;
 
 /**
  * Class ApiController
+ * apidoc -i ./app/ -o public/apidoc/
  *
  * @package App\Controllers\Api
  */
@@ -92,7 +93,7 @@ class ApiController
      *          }
      *     }
      */
-    
+
     /**
      * @param string $message
      *

@@ -17,10 +17,5 @@
 		 "App\\": "app/",
 		 "Database\\": "database/"
 	  }
-   },
-   "scripts": {
-	  "post-install-cmd": [
-		 "apidoc -i ./app/ -o public/doc/"
-	  ]
    }
 }

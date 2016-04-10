@@ -18,32 +18,30 @@ USE `diplohack`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `area_funding`
+-- Table structure for table `area_fund`
 --
 
-DROP TABLE IF EXISTS `area_funding`;
+DROP TABLE IF EXISTS `area_fund`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `area_funding` (
+CREATE TABLE `area_fund` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `area_id` int(11) NOT NULL,
-  `funding_id` int(11) NOT NULL,
-  `area_fundingcol` varchar(45) DEFAULT NULL,
+  `fund_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_area_funding_aread_id_idx` (`area_id`),
-  KEY `fk_area_funding_funding_id_idx` (`funding_id`),
-  CONSTRAINT `fk_area_funding_area_id` FOREIGN KEY (`area_id`) REFERENCES `areas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_area_funding_funding_id` FOREIGN KEY (`funding_id`) REFERENCES `funds` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_area_fund_aread_id_idx` (`area_id`),
+  KEY `fk_area_fund_funding_id_idx` (`fund_id`),
+  CONSTRAINT `fk_area_fund_area_id` FOREIGN KEY (`area_id`) REFERENCES `areas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `area_funding`
+-- Dumping data for table `area_fund`
 --
 
-LOCK TABLES `area_funding` WRITE;
-/*!40000 ALTER TABLE `area_funding` DISABLE KEYS */;
-/*!40000 ALTER TABLE `area_funding` ENABLE KEYS */;
+LOCK TABLES `area_fund` WRITE;
+/*!40000 ALTER TABLE `area_fund` DISABLE KEYS */;
+/*!40000 ALTER TABLE `area_fund` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -96,31 +94,31 @@ INSERT INTO `categories` VALUES (1,'category1','descrption1'),(2,'category2','de
 UNLOCK TABLES;
 
 --
--- Table structure for table `category_funding`
+-- Table structure for table `category_fund`
 --
 
-DROP TABLE IF EXISTS `category_funding`;
+DROP TABLE IF EXISTS `category_fund`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `category_funding` (
+CREATE TABLE `category_fund` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
-  `funding_id` int(11) NOT NULL,
+  `fund_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_category_funding_funding_id_idx` (`funding_id`),
+  KEY `fk_category_funding_funding_id_idx` (`fund_id`),
   KEY `fk_category_funding_category_id_idx` (`category_id`),
   CONSTRAINT `fk_category_funding_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_category_funding_funding_id` FOREIGN KEY (`funding_id`) REFERENCES `funds` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_category_funding_funding_id` FOREIGN KEY (`fund_id`) REFERENCES `funds` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `category_funding`
+-- Dumping data for table `category_fund`
 --
 
-LOCK TABLES `category_funding` WRITE;
-/*!40000 ALTER TABLE `category_funding` DISABLE KEYS */;
-/*!40000 ALTER TABLE `category_funding` ENABLE KEYS */;
+LOCK TABLES `category_fund` WRITE;
+/*!40000 ALTER TABLE `category_fund` DISABLE KEYS */;
+/*!40000 ALTER TABLE `category_fund` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -319,4 +317,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-10  9:45:52
+-- Dump completed on 2016-04-10 11:08:28
