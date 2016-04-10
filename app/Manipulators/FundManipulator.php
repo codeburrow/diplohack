@@ -11,22 +11,25 @@ namespace App\Manipulators;
 class FundManipulator
 {
     /**
-     * Each funding as an id.
+     * Incorporate many links to array, and attach this array to corresponding fund.
      *
-     * @param $data
+     * @param $funds
      * @return array
      */
-    public function simplify($data)
+    public function concatenateLinks($funds)
     {
-        $funds = [];
+        foreach ($funds as $fund) {
+            $fundId = $fund['id'];
 
-        foreach ($data['funds'] as $fund) {
-            if ($key = array_search($fund['id'], $data['urls'])) {
-                $fund['urls'] = $data['urls'][$key];
-//               $funds =
+            if (! isset($newFunds[$fundId])) {
+                $newFunds[$fundId] = $fund;
+                $newFunds[$fundId]['urls'] = [];
             }
+
+            array_push($newFunds[$fundId]['urls'], $fund['url']);
+            unset($newFunds[$fundId]['url']);
         }
 
-        return $funds;
+        return $newFunds;
     }
 }

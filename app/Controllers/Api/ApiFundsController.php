@@ -7,7 +7,7 @@ namespace App\Controllers\Api;
 
 use App\Manipulators\FundManipulator;
 use App\Services\FundsService;
-use App\Services\UrlService;
+use App\Services\LinkService;
 use App\Transformers\ApiFundTransformer;
 
 /**
@@ -20,9 +20,9 @@ class ApiFundsController extends ApiController
      */
     protected $fundManipulator;
     /**
-     * @var UrlService
+     * @var LinkService
      */
-    protected $urlService;
+    protected $linkService;
     /**
      * @var ApiFundTransformer
      */
@@ -40,7 +40,7 @@ class ApiFundsController extends ApiController
     {
         $this->apifundsTransformer = new ApiFundTransformer();
         $this->fundsService = new FundsService();
-        $this->urlService = new UrlService();
+        $this->linkService = new LinkService();
         $this->fundManipulator = new FundManipulator();
     }
 
@@ -51,14 +51,9 @@ class ApiFundsController extends ApiController
      */
     public function get()
     {
-        $data = [];
+        $funds = $this->fundsService->get();
 
-        $data['funds'] = $this->fundsService->get();
-        var_dump($data);
-        exit;
-        $data['urls'] = $this->urlService->getAll();
-
-        $funds = $this->fundManipulator->simplify($data);
+        $funds = $this->fundManipulator->concatenateLinks($funds);
 
         return $this->respondWithSuccess(
             $this->apifundsTransformer->transformCollection($funds)

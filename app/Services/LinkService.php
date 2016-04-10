@@ -10,11 +10,11 @@ use App\Kernel\DbManager;
 /**
  * Class DistrictService.
  */
-class UrlService extends DbManager
+class LinkService extends DbManager
 {
-    public function getAll()
+    public function get()
     {
-        $query = 'SELECT * FROM `'.getenv('DB_NAME').'`.`urls`';
+        $query = 'SELECT * FROM `'.getenv('DB_NAME').'`.`links`';
 
         $statement = $this->getConnection()->prepare($query);
 
