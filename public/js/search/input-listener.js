@@ -29,7 +29,6 @@ $(document).ready(function () {
 
                     console.log(urls);
 
-
                     var fund = $('<tr>').append(
                         $('<td>').text('Title'),
                         $('<td>').text(item.title),
