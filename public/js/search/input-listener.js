@@ -19,17 +19,16 @@ $(document).ready(function () {
                 $("#funds-table").empty();
 
                 $.each(funds, function (i, item) {
-                    var urls = $.each(item.urls, function (i, item) {
-                        console.log(item);
-                        urls += $('<tr>').append(
-                            $('<td>').text('Link'),
-                            $('<td>').append("<a href='#' id='RemoveTier'>Delete tier</a>")
-                        );
-                    });
+                    var urls = '';
 
-                    console.log(urls);
+                    console.log(item.urls[0].url);
+
+                    for (var index = 0; index < item.urls.length; index++) {
+                        urls = urls + item.urls[index].url + '<br/>';
+                    }
 
                     var fund = $('<tr>').append(
+                        $('<td>').text(i + 1).data('rowspan', 3),
                         $('<td>').text('Title'),
                         $('<td>').text(item.title),
                         $('<td>').text('Description'),

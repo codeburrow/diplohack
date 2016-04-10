@@ -30,7 +30,7 @@ class LinkService extends DbManager
 
     public function getByFundId($fundId)
     {
-        $query = 'SELECT url FROM `'.getenv('DB_NAME').'`.`links` INNER JOIN fund_link ON fund_link.link_id = links.id WHERE fund_link.fund_id = :id ';
+        $query = 'SELECT * FROM `'.getenv('DB_NAME').'`.`links` INNER JOIN fund_link ON fund_link.link_id = links.id WHERE fund_link.fund_id = :id ';
 
         $statement = $this->getConnection()->prepare($query);
         $statement->bindParam(':id', $fundId, PDO::PARAM_INT);
@@ -39,8 +39,8 @@ class LinkService extends DbManager
             return false;
         }
 
-        $routes = $statement->fetchAll();
+        $results = $statement->fetchAll();
 
-        return $routes;
+        return $results;
     }
 }

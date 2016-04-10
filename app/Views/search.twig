@@ -93,7 +93,7 @@
                         <th scope="row"> Link:</th>
                         <td>
                             {% for url in funding.urls %}
-                                <a class="list-group-item" href="{{ url }}">{{ url }}</a>
+                                <a class="list-group-item" href="{{ url.url }}">{{ url.url }}</a>
                             {% endfor %}
                         </td>
                     </tr>

@@ -31,29 +31,26 @@ class FundManipulator
     public function concatenateLinks($funds)
     {
         $newFunds = [];
-//
-//        foreach ($funds as $fund) {
-//            unset($fund['url']);
-//            var_dump($this->linkService->getByFundId($fund['id']));exit;
-//            $fund['urls'] = $this->linkOnlyTransformer->transformCollection($this->linkService->getByFundId($fund['id']));
-//            $newFunds[$fund['id']] = $fund;
-//        }
-//
-//        var_dump($newFunds);exit;
-
-//        return $newFunds;
 
         foreach ($funds as $fund) {
-            $fundId = $fund['id'];
-
-            if (! isset($newFunds[$fundId])) {
-                $newFunds[$fundId] = $fund;
-                $newFunds[$fundId]['urls'] = [];
-            }
-
-            array_push($newFunds[$fundId]['urls'], $fund['url']);
-            unset($newFunds[$fundId]['url']);
+            unset($fund['url']);
+            $fund['urls'] = $this->linkOnlyTransformer->transformCollection($this->linkService->getByFundId($fund['id']));
+            $newFunds[$fund['id']] = $fund;
         }
+
+        return $newFunds;
+
+//        foreach ($funds as $fund) {
+//            $fundId = $fund['id'];
+//
+//            if (! isset($newFunds[$fundId])) {
+//                $newFunds[$fundId] = $fund;
+//                $newFunds[$fundId]['urls'] = [];
+//            }
+//
+//            array_push($newFunds[$fundId]['urls'], $fund['url']);
+//            unset($newFunds[$fundId]['url']);
+//        }
 
         return $newFunds;
     }
