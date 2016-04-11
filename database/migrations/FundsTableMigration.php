@@ -5,6 +5,9 @@
  */
 namespace Database\migrations;
 
+use App\Kernel\DbManager;
+use App\Kernel\IoC;
+
 /**
  * Class FundsTableMigration.
  */
@@ -19,6 +22,7 @@ class FundsTableMigration implements Migration
     public static function up()
     {
         $dbManager = IoC::resolve(DbManager::class);
+
         $query =
             'CREATE TABLE `'.getenv('DB_NAME').'`.`'.User::$tableName.'` ('.
             '`'.User::$columnPrimaryKey.'` INT NOT NULL AUTO_INCREMENT, '.

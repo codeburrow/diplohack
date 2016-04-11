@@ -4,6 +4,9 @@
  * @since 4/7/16
  */
 
+use App\Kernel\DbManager;
+use App\Kernel\IoC;
+
 session_start();
 
 $_SESSION['CURRENT_URL'] = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
@@ -18,6 +21,9 @@ try {
 // catch exception -- means it's on production no env.
 }
 
-//header('Access-Control-Allow-Origin: *');
-//header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+IoC::register(DbManager::class, function () {
+    $dbManager = new DbManager();
+
+    return $dbManager;
+});
 
