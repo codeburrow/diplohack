@@ -18,4 +18,8 @@ Implement idea on a web & android app.
 - `php database/commands/provision` Drops and recreates all tables
 
 ## Tests
+### Run
+`./vendor/bin/codecept run`
+
+### Set Up
 1. Follow 1st & 2nd steps only at http://codeception.com/docs/modules/WebDriver#phantomjs
