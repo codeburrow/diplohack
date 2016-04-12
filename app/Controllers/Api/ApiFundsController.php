@@ -98,6 +98,10 @@ class ApiFundsController extends ApiController
     {
         $funds = $this->fundsService->get();
 
+        if ($funds instanceof \PDOException) {
+            $this->respondInternalServerError();
+        }
+
         $funds = $this->fundManipulator->concatenateLinks($funds);
 
         return $this->respondWithSuccess(
@@ -167,7 +171,7 @@ class ApiFundsController extends ApiController
      */
     public function search()
     {
-        if (! isset($_GET['term'])) return $this->respondUnprocessableEntity();
+        if (!isset($_GET['term'])) return $this->respondUnprocessableEntity();
 
         $funds = $this->fundsService->search($_GET['term']);
 

@@ -1,0 +1,10 @@
+class_name: ApiTester
+modules:
+    enabled:
+        - PhpBrowser:
+            url: 'http://diplohack.app/'
+            browser: phantomjs
+        - REST:
+            depends: PhpBrowser
+            url: 'http://diplohack.app/'
+        - \Helper\Acceptance

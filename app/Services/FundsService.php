@@ -10,16 +10,14 @@ class FundsService extends DbManager
     {
         $query = "
             SELECT funds.id, funds.title, funds.description, links.url
-            FROM `".getenv('DB_NAME')."`.`funds`
+            FROM `" . getenv('DB_NAME') . "`.`funds`
             INNER JOIN fund_link ON fund_link.fund_id = funds.id
             INNER JOIN links ON fund_link.link_id = links.id;
             ";
 
         $statement = $this->getConnection()->prepare($query);
 
-        if (! $statement->execute()) {
-            return false;
-        }
+        $statement->execute();
 
         return $statement->fetchAll();
     }
@@ -28,7 +26,7 @@ class FundsService extends DbManager
     {
         $query = "
             SELECT DISTINCT funds.id, funds.title, funds.description, links.url
-            FROM `".getenv('DB_NAME')."`.`funds`
+            FROM `" . getenv('DB_NAME') . "`.`funds`
             INNER JOIN fund_link ON fund_link.fund_id = funds.id
             INNER JOIN links ON fund_link.link_id = links.id
             INNER JOIN area_fund ON area_fund.fund_id = funds.id
@@ -47,7 +45,7 @@ class FundsService extends DbManager
         $likeTerm = "%{$term}%";
         $statement->bindParam(':term', $likeTerm, PDO::PARAM_STR);
 
-        if (! $statement->execute()) {
+        if (!$statement->execute()) {
             return false;
         }
 
