@@ -13,8 +13,8 @@ Implement idea on a web & android app.
 - Create a new migration similarly as with /database/migrations/UsersTableSeeder.php
 - Then on /database/migrations/DatabaseSeeder.php add the respective 'up' & 'down' functions.
 ### Commands
-- `php database/commands/up` Creates all tables
-- `php database/commands/down` Drops all tables
+- `php database/commands/up.php` Creates all tables
+- `php database/commands/down.php` Drops all tables
 - `php database/commands/provision` Drops and recreates all tables
 
 ## Tests
