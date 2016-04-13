@@ -42,17 +42,14 @@ class FundsCest
         $allFunds = $fundsService->get();
 
         $expectedData = $fundsService->search($allFunds[0]['title']);
-        var_dump($allFunds[0]['title']);
-        var_dump($expectedData);exit;
         $expectedData = $apiFundTransformer
             ->transformCollection($fundManipulator
                 ->concatenateLinks($expectedData));
 
-
         $I->amOnPage('/api/v1/funds/search?term='.$allFunds[0]['title']);
 
         $I->seeResponseContainsJson([
-            'status_code' => 201,
+            'status_code' => 200,
             'data'        => $expectedData
         ]);
     }
