@@ -12,7 +12,7 @@ use App\Kernel\DbManager;
  */
 class ProfileService extends DbManager
 {
-    public function getAll()
+    public function get()
     {
         $query = 'SELECT * FROM `'.getenv('DB_NAME').'`.`profiles`';
 

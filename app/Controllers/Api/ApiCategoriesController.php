@@ -38,7 +38,7 @@ class ApiCategoriesController extends ApiController
      */
     public function getList()
     {
-        $categories = $this->categoryService->getAll();
+        $categories = $this->categoryService->get();
 
         return $this->respondWithSuccess($this->apiCategoryListTransformer->transformCollection($categories));
     }

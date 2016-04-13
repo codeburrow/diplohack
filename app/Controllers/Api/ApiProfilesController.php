@@ -30,7 +30,7 @@ class ApiProfilesController extends ApiController
      */
     public function getList()
     {
-        $profiles = $this->profileService->getAll();
+        $profiles = $this->profileService->get();
 
         return $this->respondWithSuccess($this->apiProfilesListTransformer->transformCollection($profiles));
     }
