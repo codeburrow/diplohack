@@ -22,4 +22,5 @@ Implement idea on a web & android app.
 `./vendor/bin/codecept run`
 
 ### Set Up
-1. Follow 1st & 2nd steps only at http://codeception.com/docs/modules/WebDriver#phantomjs
+1. Follow 1st & 2nd steps only at http://codeception.com/docs/modules/WebDriver#phantomjs Note the currente settings will try to test the app on the diplohack.app url. If you with to test it to a differnt url check http://stackoverflow.com/a/26467743/2790481 (not tested)
+2. To create a test for the API: `./vendor/bin/codecept generate:cest api Areas`. This will create a AreasCest.php where you can add your tests for the tests call on regards to Areas.

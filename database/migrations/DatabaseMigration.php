@@ -19,6 +19,10 @@ class DatabaseMigration implements Migration
     public static function up()
     {
         FundsTableMigration::up();
+        AreasTableMigration::up();
+        CategoriesTableMigration::up();
+        LinksTableMigration::up();
+        ProfilesTableMigration::up();
     }
 
     /**
@@ -29,5 +33,9 @@ class DatabaseMigration implements Migration
     public static function down()
     {
         FundsTableMigration::down();
+        AreasTableMigration::down();
+        CategoriesTableMigration::down();
+        LinksTableMigration::down();
+        ProfilesTableMigration::down();
     }
 }

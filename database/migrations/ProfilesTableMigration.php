@@ -1,20 +1,19 @@
 <?php
 /**
- * @author Rizart Dokollari <r.dokollari@gmail.com>
- * @since 4/11/16
+ * @author Rizart Dokollar <r.dokollari@gmail.com
+ * @since 4/13/16
  */
+
 namespace Database\migrations;
+
 
 use App\Kernel\DbManager;
 use App\Kernel\IoC;
 use Colors\Color;
 
-/**
- * Class FundsTableMigration.
- */
-class FundsTableMigration implements Migration
+class ProfilesTableMigration implements Migration
 {
-    const TABLE_NAME = 'funds';
+    const TABLE_NAME = 'profiles';
 
     /**
      * Create table(s).
@@ -30,7 +29,7 @@ class FundsTableMigration implements Migration
         $query =
             'CREATE TABLE `'.getenv('DB_NAME').'`.`'.self::TABLE_NAME.'` (
               `id` INT NOT NULL AUTO_INCREMENT,
-              `title` TEXT NOT NULL,
+              `url` TEXT NOT NULL,
               `description` TEXT NULL,
             PRIMARY KEY (`id`));';
 
