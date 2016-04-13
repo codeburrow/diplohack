@@ -32,4 +32,28 @@ class FundsCest
             'data'        => $expectedData
         ]);
     }
+
+    /** @test */
+    public function it_searches_funds(ApiTester $I)
+    {
+        $fundsService = new FundsService();
+        $apiFundTransformer = new ApiFundTransformer();
+        $fundManipulator = new FundManipulator();
+        $allFunds = $fundsService->get();
+
+        $expectedData = $fundsService->search($allFunds[0]['title']);
+        var_dump($allFunds[0]['title']);
+        var_dump($expectedData);exit;
+        $expectedData = $apiFundTransformer
+            ->transformCollection($fundManipulator
+                ->concatenateLinks($expectedData));
+
+
+        $I->amOnPage('/api/v1/funds/search?term='.$allFunds[0]['title']);
+
+        $I->seeResponseContainsJson([
+            'status_code' => 201,
+            'data'        => $expectedData
+        ]);
+    }
 }

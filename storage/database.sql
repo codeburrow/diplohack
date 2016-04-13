@@ -112,7 +112,7 @@ CREATE TABLE `category_fund` (
   KEY `fk_category_funding_category_id_idx` (`category_id`),
   CONSTRAINT `fk_category_funding_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_category_funding_funding_id` FOREIGN KEY (`fund_id`) REFERENCES `funds` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,7 +121,7 @@ CREATE TABLE `category_fund` (
 
 LOCK TABLES `category_fund` WRITE;
 /*!40000 ALTER TABLE `category_fund` DISABLE KEYS */;
-INSERT INTO `category_fund` VALUES (1,141,241),(11,1,301),(21,1,311),(31,1,331),(41,1,361),(51,1,371),(61,1,381),(71,1,391),(81,1,401),(91,1,411),(101,1,421);
+INSERT INTO `category_fund` VALUES (1,141,241),(11,1,301),(21,1,311),(31,1,331),(41,1,361),(51,1,371),(61,1,381),(71,1,391),(81,1,401),(91,1,411),(101,1,421),(111,1,1);
 /*!40000 ALTER TABLE `category_fund` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,4 +268,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-11  8:43:39
+-- Dump completed on 2016-04-13  8:29:19
