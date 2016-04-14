@@ -48,4 +48,5 @@ for ($row = 2; $row <= $highestRow; $row++) {
     }
 
     $fundDbService->assignAreaById($fund['id'], $area['id']);
+    $fundDbService->assignCategoryById($fund['id'], $category['id']);
 }

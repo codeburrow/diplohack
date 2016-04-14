@@ -146,5 +146,37 @@ class FundDbService extends DbManager
 
         return $statement->execute();
     }
+
+    /**
+     * @return bool
+     */
+    public function assignCategoryById($fundId, $categoryId)
+    {
+        $query = 'INSERT INTO `'.getenv('DB_NAME').'`.`category_fund` (`category_id`, `fund_id`) VALUES (:categoryId, :fundId);';
+
+        $statement = $this->getConnection()->prepare($query);
+
+        $statement->bindParam(':fundId', $fundId, PDO::PARAM_INT);
+        $statement->bindParam(':categoryId', $categoryId, PDO::PARAM_INT);
+
+        return $statement->execute();
+    }
+
+    /**
+     * @param $fundId
+     * @param $linkId
+     * @return bool
+     */
+    public function assignLinkById($fundId, $linkId)
+    {
+        $query = 'INSERT INTO `'.getenv('DB_NAME').'`.`fund_link` (`link_id`, `fund_id`) VALUES (:linkId, :fundId);';
+
+        $statement = $this->getConnection()->prepare($query);
+
+        $statement->bindParam(':fundId', $fundId, PDO::PARAM_INT);
+        $statement->bindParam(':linkId', $linkId, PDO::PARAM_INT);
+
+        return $statement->execute();
+    }
 }
 

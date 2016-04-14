@@ -107,4 +107,42 @@ class FundsCest
 
         $I->seeInDatabase('area_fund', ['area_id' => $areaId, 'fund_id' => $fundId]);
     }
+
+    /**
+     * @test
+     * @param IntegrationTester $I
+     */
+    public function it_assigns_a_category_by_id(IntegrationTester $I)
+    {
+        $fundDbService = new FundDbService();
+        $I->haveInDatabase('funds', ['title' => 'fund-title']);
+        $I->haveInDatabase('categories', ['name' => 'category-name']);
+        $fundId = $I->grabFromDatabase('funds', 'id', ['title' => 'fund-title']);
+        $categoryId = $I->grabFromDatabase('categories', 'id', ['name' => 'category-name']);
+
+        $I->dontSeeInDatabase('category_fund', ['category_id' => $categoryId, 'fund_id' => $fundId]);
+
+        $fundDbService->assignCategoryById($fundId, $categoryId);
+
+        $I->seeInDatabase('category_fund', ['category_id' => $categoryId, 'fund_id' => $fundId]);
+    }
+
+    /**
+     * @test
+     * @param IntegrationTester $I
+     */
+    public function it_assigns_link_by_id(IntegrationTester $I)
+    {
+        $fundDbService = new FundDbService();
+        $I->haveInDatabase('funds', ['title' => 'fund-title']);
+        $I->haveInDatabase('links', ['url' => 'link-url']);
+        $fundId = $I->grabFromDatabase('funds', 'id', ['title' => 'fund-title']);
+        $linkId = $I->grabFromDatabase('links', 'id', ['url' => 'link-url']);
+
+        $I->dontSeeInDatabase('fund_link', ['link_id' => $linkId, 'fund_id' => $fundId]);
+
+        $fundDbService->assignLinkById($fundId, $linkId);
+
+        $I->seeInDatabase('fund_link', ['link_id' => $linkId, 'fund_id' => $fundId]);
+    }
 }
