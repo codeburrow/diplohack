@@ -46,5 +46,5 @@ for ($row = 2; $row <= $highestRow; $row++) {
         $linkDbService->findOrCreateByUrl($nationalContactLinkUrl);
     }
 
-//    $areaDbService->findOrCreateByName($areaName);
+    $areaDbService->findOrCreateByName($areaName);
 }

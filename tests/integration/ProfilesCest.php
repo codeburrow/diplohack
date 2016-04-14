@@ -22,7 +22,7 @@ class ProfilesCest
         $profileDbService = new ProfileDbService();
 
         // finds and returns
-        $expectedData = ['name' => 'expected-name'];
+        $expectedData = ['name' => 'expected-name-7777'];
         $I->haveInDatabase('profiles', $expectedData);
         $I->assertNotSame(false, $actualProfile = $profileDbService->findOrCreateByName($expectedData['name']));
         $I->assertEquals($expectedData['name'], $actualProfile['name']);
@@ -41,7 +41,7 @@ class ProfilesCest
      */
     public function it_finds_profile_by_id(IntegrationTester $I)
     {
-        $expectedData = ['name' => 'expected-name', 'description' => 'expected-description'];
+        $expectedData = ['name' => 'expected-name-33333', 'description' => 'expected-description'];
         $expectedProfileId = $I->haveInDatabase('profiles', $expectedData);
 
         $profileDbService = new ProfileDbService();
@@ -62,7 +62,7 @@ class ProfilesCest
 
         $profileDbService = new ProfileDbService();
 
-        $actualProfile = $profileDbService->findByName('expected-name');
+        $I->assertTrue(false !== $actualProfile = $profileDbService->findByName('expected-name'));
 
         $I->assertEquals($expectedProfileId, $actualProfile['id']);
         $I->assertEquals($expectedData, array_intersect_key($actualProfile, array_flip(['name', 'description'])));
@@ -74,7 +74,7 @@ class ProfilesCest
      */
     public function it_creates_profile(IntegrationTester $I)
     {
-        $expectedData = ['name' => 'expected-name', 'description' => 'expected-description'];
+        $expectedData = ['name' => 'expected-name-44444', 'description' => 'expected-description'];
         $I->dontSeeInDatabase('profiles', $expectedData);
 
         $profileDbService = new ProfileDbService();

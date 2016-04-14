@@ -24,7 +24,9 @@ class AreasCest
         $apiAreasListTransformer = new ApiAreasListTransformer();
         $areas = $areaService->get();
         $expectedData = $apiAreasListTransformer->transformCollection($areas);
+        
         $I->amOnPage('/api/v1/areas/list');
+        
         $I->seeResponseContainsJson([
             'status_code' => 200,
             'data'        => $expectedData
