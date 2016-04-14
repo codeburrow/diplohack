@@ -5,6 +5,7 @@
  */
 use App\DbServices\CategoryDbService;
 use App\DbServices\FundDbService;
+use App\DbServices\LinkDbService;
 use App\DbServices\ProfileDbService;
 
 require __DIR__.'/../../vendor/autoload.php';
@@ -17,6 +18,7 @@ $excelFileLocation = __DIR__.'/../../storage/data_set.xlsx';
 $categoryDbService = new CategoryDbService();
 $profileDbService = new ProfileDbService();
 $fundDbService = new FundDbService();
+$linkDbService = new LinkDbService();
 $phpExcel = PHPExcel_IOFactory::load($excelFileLocation);
 
 $sheet = $phpExcel->getSheet(0);
@@ -29,8 +31,10 @@ for ($row = 2; $row <= $highestRow; $row++) {
     $categoryName = $rowData[0];
     $profileName = $rowData[1];
     $fundTitle = $rowData[2];
+    $linkUrl = $rowData[3];
 
     $categoryDbService->findOrCreateByName($categoryName);
     $profileDbService->findOrCreateByName($profileName);
-//    $fundDbService->findOrCreateByName($profileName);
+    $fundDbService->findOrCreateByTitle($fundTitle);
+    $linkDbService->findOrCreateByUrl($linkUrl);
 }

@@ -30,7 +30,7 @@ class LinksTableMigration implements Migration
             'CREATE TABLE `'.getenv('DB_NAME').'`.`'.self::TABLE_NAME.'` (
               `id` INT NOT NULL AUTO_INCREMENT,
               `url` TEXT NOT NULL,
-              `description` TEXT NULL,
+              `description` TEXT DEFAULT NULL,
             PRIMARY KEY (`id`));';
 
         $dbManager->getConnection()->prepare($query)->execute();
