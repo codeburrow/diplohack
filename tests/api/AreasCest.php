@@ -1,9 +1,6 @@
 <?php
 
 
-use App\DbServices\AreaDbService;
-use App\Transformers\ApiAreasListTransformer;
-
 class AreasCest
 {
     public function _before(ApiTester $I)
@@ -17,11 +14,16 @@ class AreasCest
     /** @test */
     public function it_returns_areas_select_list(ApiTester $I)
     {
-        $areaService = new AreaDbService();
-        $apiAreasListTransformer = new ApiAreasListTransformer();
-        $areas = $areaService->get();
-
-        $expectedData = $apiAreasListTransformer->transformCollection($areas);
+        $I->haveInDatabase('areas', ['name' => 'area1']);
+        $I->haveInDatabase('areas', ['name' => 'area2']);
+//        $area
+//
+//        $expectedData = [
+//            [
+//                "id"   => $item["id"],
+//                "text" => $item["name"],
+//            ]
+//        ];
 
         $I->amOnPage('/api/v1/areas/list');
 

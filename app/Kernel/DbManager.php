@@ -28,6 +28,7 @@ class DbManager
      */
     public function __construct()
     {
+//        var_dump(getenv('DB_NAME'));exit;
         try {
             $this->dbConnection = new PDO(
                 'mysql:host='.getenv('DB_HOST').';'.'dbname='.getenv('DB_NAME').';'.'port='.getenv('DB_PORT'),

@@ -15,10 +15,10 @@ extensions:
 modules:
     config:
         Db:
-            dsn: 'mysql:host=localhost;dbname=diplohack'
+            dsn: 'mysql:host=localhost;dbname=test_diplohack'
             user: 'homestead'
             password: 'secret'
             dump: tests/_data/dump.sql
-            populate: false
+            populate: true
             cleanup: true
             reconnect: true

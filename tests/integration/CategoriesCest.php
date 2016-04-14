@@ -29,4 +29,24 @@ class CategoriesCest
         $I->assertEquals($expectedCategoryId, $actualCategory['id']);
         $I->assertEquals($expectedData, array_intersect_key($actualCategory, array_flip(['name', 'description'])));
     }
+
+    /**
+     * @test
+     * @param IntegrationTester $I
+     */
+    public function it_creates_category(IntegrationTester $I)
+    {
+        $expectedData = ['name' => 'expected-name', 'description' => 'expected-description'];
+        $I->dontSeeInDatabase('categories', $expectedData);
+
+        $categoryDbService = new CategoryDbService();
+
+        $I->assertNotSame(false, $actualCategoryId = $categoryDbService->create($expectedData));
+
+        $actualCategory = $categoryDbService->findByName($expectedData['name']);
+
+        $I->seeInDatabase('categories', $expectedData);
+
+        $I->assertEquals($expectedData, array_intersect_key($actualCategory, array_flip(['name', 'description'])));
+    }
 }

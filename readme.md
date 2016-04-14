@@ -19,9 +19,11 @@ Implement idea on a web & android app.
 
 ## Tests
 - Run all tests: `./vendor/bin/codecept run`
-- Create integration test: `./vendor/bin/codecept generate:cest integration Categories`
 
 ### Set Up
+> Tests require a database dump to be stored at `tests/_data/dump.sql`. Please remember to remove any sql queries from this file which create, or use database, or do inserts. Else the test will not run properly.
 1. Follow 1st & 2nd steps only at http://codeception.com/docs/modules/WebDriver#phantomjs Note the currente settings will try to test the app on the diplohack.app url. If you with to test it to a differnt url check http://stackoverflow.com/a/26467743/2790481 (not tested)
-2. To create a test for the API: `./vendor/bin/codecept generate:cest api Areas`. This will create a AreasCest.php where you can add your tests for the tests call on regards to Areas.
-3. Create a mysql database with name: test_diplohack
+2. Create a mysql database with name: test_diplohack
+3. To create a test for the API: `./vendor/bin/codecept generate:cest api Areas`. This will create a AreasCest.php where you can add your tests for the tests call on regards to Areas.
+4. To create integration test: `./vendor/bin/codecept generate:cest integration Categories`
+

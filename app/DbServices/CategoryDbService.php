@@ -59,4 +59,21 @@ class CategoryDbService extends DbManager
 
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function create($data)
+    {
+        $query = 'INSERT INTO `'.getenv('DB_NAME').'`.`categories` (`name`, `description`) VALUES (:name, :description);';
+
+        $name = $data['name'];
+        $description = $data['description'];
+
+        $statement = $this->getConnection()->prepare($query);
+
+        $statement->bindParam(':name', $name, PDO::PARAM_STR);
+        $statement->bindParam(':description', $description, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        return $this->getConnection()->lastInsertId();
+    }
 }

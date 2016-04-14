@@ -8,3 +8,5 @@ modules:
             depends: PhpBrowser
             url: 'http://diplohack.app/'
         - \Helper\Acceptance
+        - Db
+        - Asserts
