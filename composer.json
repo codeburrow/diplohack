@@ -12,7 +12,8 @@
 	  "vlucas/phpdotenv": "^2.2",
 	  "twig/twig": "^1.24",
       "codeception/codeception": "^2.1",
-      "kevinlebrun/colors.php": "^1.0"
+      "kevinlebrun/colors.php": "^1.0",
+      "phpoffice/phpexcel": "^1.8"
    },
    "autoload": {
 	  "psr-4": {
