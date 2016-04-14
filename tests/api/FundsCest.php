@@ -1,7 +1,7 @@
 <?php namespace tests\api;
 
 use ApiTester;
-use App\DbServices\FundsDbService;
+use App\DbServices\FundDbService;
 use App\Manipulators\FundManipulator;
 use App\Transformers\ApiFundTransformer;
 
@@ -18,7 +18,7 @@ class FundsCest
     /** @test */
     public function it_returns_all_funds(ApiTester $I)
     {
-        $fundsService = new FundsDbService();
+        $fundsService = new FundDbService();
         $apiFundTransformer = new ApiFundTransformer();
         $fundManipulator = new FundManipulator();
         $expectedData = $apiFundTransformer
@@ -36,7 +36,7 @@ class FundsCest
     /** @test */
     public function it_searches_funds(ApiTester $I)
     {
-        $fundsService = new FundsDbService();
+        $fundsService = new FundDbService();
         $apiFundTransformer = new ApiFundTransformer();
         $fundManipulator = new FundManipulator();
         $allFunds = $fundsService->get();

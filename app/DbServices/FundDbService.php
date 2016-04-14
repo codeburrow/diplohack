@@ -4,13 +4,13 @@ use App\Kernel\DbManager;
 use Database;
 use PDO;
 
-class FundsDbService extends DbManager
+class FundDbService extends DbManager
 {
     public function get()
     {
         $query = "
             SELECT funds.id, funds.title, funds.description, links.url
-            FROM `" . getenv('DB_NAME') . "`.`funds`
+            FROM `".getenv('DB_NAME')."`.`funds`
             INNER JOIN fund_link ON fund_link.fund_id = funds.id
             INNER JOIN links ON fund_link.link_id = links.id;
             ";
@@ -26,7 +26,7 @@ class FundsDbService extends DbManager
     {
         $query = "
             SELECT DISTINCT funds.id, funds.title, funds.description, links.url
-            FROM `" . getenv('DB_NAME') . "`.`funds`
+            FROM `".getenv('DB_NAME')."`.`funds`
             INNER JOIN fund_link ON fund_link.fund_id = funds.id
             INNER JOIN links ON fund_link.link_id = links.id
             INNER JOIN area_fund ON area_fund.fund_id = funds.id
@@ -45,11 +45,63 @@ class FundsDbService extends DbManager
         $likeTerm = "%{$term}%";
         $statement->bindParam(':term', $likeTerm, PDO::PARAM_STR);
 
-        if (!$statement->execute()) {
+        if (! $statement->execute()) {
             return false;
         }
 
         return $statement->fetchAll();
+    }
+
+    public function findOrCreateByTitle($title)
+    {
+        if (false !== ($fund = $this->findByTitle($title))) {
+            return $fund;
+        }
+
+        return $this->findById(
+            $this->create(['title' => $title])
+        );
+    }
+
+    public function findByTitle($title)
+    {
+        $query = 'SELECT * FROM `'.getenv('DB_NAME').'`.`funds` WHERE `title` = :title';
+
+        $statement = $this->getConnection()->prepare($query);
+        $statement->bindParam(':title', $title, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function findById($id)
+    {
+        $query = 'SELECT * FROM `'.getenv('DB_NAME').'`.`funds` WHERE `id` = :id';
+
+        $statement = $this->getConnection()->prepare($query);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function create($data)
+    {
+        $query = 'INSERT INTO `'.getenv('DB_NAME').'`.`funds` (`title`, `description`) VALUES (:title, :description);';
+
+        $title = $data['title'];
+        $description = isset($data['description']) ? $data['description'] : null;
+
+        $statement = $this->getConnection()->prepare($query);
+
+        $statement->bindParam(':title', $title, PDO::PARAM_STR);
+        $statement->bindParam(':description', $description, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        return $this->getConnection()->lastInsertId();
     }
 }
 

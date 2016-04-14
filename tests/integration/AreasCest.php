@@ -1,7 +1,7 @@
-<?php
-
+<?php namespace tests\integration;
 
 use App\DbServices\AreaDbService;
+use IntegrationTester;
 
 class AreasCest
 {

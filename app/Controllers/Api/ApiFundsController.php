@@ -6,7 +6,7 @@
 namespace App\Controllers\Api;
 
 use App\Manipulators\FundManipulator;
-use App\DbServices\FundsDbService;
+use App\DbServices\FundDbService;
 use App\DbServices\LinkDbService;
 use App\Transformers\ApiFundTransformer;
 
@@ -29,7 +29,7 @@ class ApiFundsController extends ApiController
     private $apifundsTransformer;
 
     /**
-     * @var FundsDbService
+     * @var FundDbService
      */
     private $fundsService;
 
@@ -39,7 +39,7 @@ class ApiFundsController extends ApiController
     public function __construct()
     {
         $this->apifundsTransformer = new ApiFundTransformer();
-        $this->fundsService = new FundsDbService();
+        $this->fundsService = new FundDbService();
         $this->linkService = new LinkDbService();
         $this->fundManipulator = new FundManipulator();
     }

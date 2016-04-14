@@ -39,7 +39,6 @@ class ProfileDbService extends DbManager
         );
     }
 
-
     public function findByName($name)
     {
         $query = 'SELECT * FROM `'.getenv('DB_NAME').'`.`profiles` WHERE `name` = :name';

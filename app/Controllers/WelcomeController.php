@@ -5,7 +5,7 @@
  */
 namespace App\Controllers;
 use App\Manipulators\FundManipulator;
-use App\DbServices\FundsDbService;
+use App\DbServices\FundDbService;
 use App\Transformers\ApiFundTransformer;
 
 
@@ -21,7 +21,7 @@ class WelcomeController extends Controller
     public function __construct(){
 
 	    parent::__construct();
-        $this->fundsService = new FundsDbService();
+        $this->fundsService = new FundDbService();
         $this->fundsTransformer = new ApiFundTransformer();
         $this->fundManipulator = new FundManipulator();
     }
