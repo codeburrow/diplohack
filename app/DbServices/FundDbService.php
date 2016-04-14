@@ -4,8 +4,14 @@ use App\Kernel\DbManager;
 use Database;
 use PDO;
 
+/**
+ * Class FundDbService.
+ */
 class FundDbService extends DbManager
 {
+    /**
+     * @return array
+     */
     public function get()
     {
         $query = "
@@ -22,6 +28,10 @@ class FundDbService extends DbManager
         return $statement->fetchAll();
     }
 
+    /**
+     * @param $term
+     * @return array|bool
+     */
     public function search($term)
     {
         $query = "
@@ -52,6 +62,10 @@ class FundDbService extends DbManager
         return $statement->fetchAll();
     }
 
+    /**
+     * @param $title
+     * @return mixed
+     */
     public function findOrCreateByTitle($title)
     {
         if (false !== ($fund = $this->findByTitle($title))) {
@@ -63,6 +77,10 @@ class FundDbService extends DbManager
         );
     }
 
+    /**
+     * @param $title
+     * @return mixed
+     */
     public function findByTitle($title)
     {
         $query = 'SELECT * FROM `'.getenv('DB_NAME').'`.`funds` WHERE `title` = :title';
@@ -75,6 +93,10 @@ class FundDbService extends DbManager
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function findById($id)
     {
         $query = 'SELECT * FROM `'.getenv('DB_NAME').'`.`funds` WHERE `id` = :id';
@@ -87,6 +109,10 @@ class FundDbService extends DbManager
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * @param $data
+     * @return string
+     */
     public function create($data)
     {
         $query = 'INSERT INTO `'.getenv('DB_NAME').'`.`funds` (`title`, `description`) VALUES (:title, :description);';
@@ -102,6 +128,23 @@ class FundDbService extends DbManager
         $statement->execute();
 
         return $this->getConnection()->lastInsertId();
+    }
+
+    /**
+     * @param $fundId
+     * @param $areaId
+     * @return bool
+     */
+    public function assignAreaById($fundId, $areaId)
+    {
+        $query = 'INSERT INTO `'.getenv('DB_NAME').'`.`area_fund` (`area_id`, `fund_id`) VALUES (:areaId, :fundId);';
+
+        $statement = $this->getConnection()->prepare($query);
+
+        $statement->bindParam(':fundId', $fundId, PDO::PARAM_INT);
+        $statement->bindParam(':areaId', $areaId, PDO::PARAM_INT);
+
+        return $statement->execute();
     }
 }
 

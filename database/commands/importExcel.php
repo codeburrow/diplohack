@@ -37,14 +37,15 @@ for ($row = 2; $row <= $highestRow; $row++) {
     $nationalContactLinkUrl = $rowData[4];
     $areaName = $rowData[5];
 
-    $categoryDbService->findOrCreateByName($categoryName);
-    $profileDbService->findOrCreateByName($profileName);
-    $fundDbService->findOrCreateByTitle($fundTitle);
-    $linkDbService->findOrCreateByUrl($linkUrl);
+    $category = $categoryDbService->findOrCreateByName($categoryName);
+    $profile = $profileDbService->findOrCreateByName($profileName);
+    $fund = $fundDbService->findOrCreateByTitle($fundTitle);
+    $area = $areaDbService->findOrCreateByName($areaName);
+    $link = $linkDbService->findOrCreateByUrl($linkUrl);
 
     if (null !== $nationalContactLinkUrl) {
         $linkDbService->findOrCreateByUrl($nationalContactLinkUrl);
     }
 
-    $areaDbService->findOrCreateByName($areaName);
+    $fundDbService->assignAreaById($fund['id'], $area['id']);
 }

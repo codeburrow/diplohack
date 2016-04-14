@@ -88,5 +88,23 @@ class FundsCest
 
         $I->assertEquals($expectedData, array_intersect_key($actualFund, array_flip(['title', 'description'])));
     }
-}
 
+    /**
+     * @test
+     * @param IntegrationTester $I
+     */
+    public function it_assigns_an_area_by_id(IntegrationTester $I)
+    {
+        $fundDbService = new FundDbService();
+        $I->haveInDatabase('funds', ['title' => 'fund-title']);
+        $I->haveInDatabase('areas', ['name' => 'area-name']);
+        $fundId = $I->grabFromDatabase('funds', 'id', ['title' => 'fund-title']);
+        $areaId = $I->grabFromDatabase('areas', 'id', ['name' => 'area-name']);
+
+        $I->dontSeeInDatabase('area_fund', ['area_id' => $areaId, 'fund_id' => $fundId]);
+
+        $fundDbService->assignAreaById($fundId, $areaId);
+
+        $I->seeInDatabase('area_fund', ['area_id' => $areaId, 'fund_id' => $fundId]);
+    }
+}
