@@ -164,4 +164,32 @@ class FundsCest
 
         $I->seeInDatabase('fund_profile', ['profile_id' => $profileId, 'fund_id' => $fundId]);
     }
+
+
+    /**
+     * @test
+     * @param IntegrationTester $I
+     */
+    public function it_searches_all_funds_relation_tables(IntegrationTester $I)
+    {
+        // primary
+        $fundId = $I->haveInDatabase('funds', ['title' => 'fund-title']);
+        $areaId = $I->haveInDatabase('areas', ['name' => 'area-name']);
+        $categoryId = $I->haveInDatabase('categories', ['name' => 'category-name']);
+        $linkId = $I->haveInDatabase('links', ['url' => 'link-url']);
+        $profileId = $I->haveInDatabase('profiles', ['name' => 'profile-name']);
+
+        // relations
+        $I->haveInDatabase('area_fund', ['area_id' => $areaId, 'fund_id' => $fundId]);
+        $I->haveInDatabase('category_fund', ['category_id' => $categoryId, 'fund_id' => $fundId]);
+        $I->haveInDatabase('fund_link', ['link_id' => $linkId, 'fund_id' => $fundId]);
+        $I->haveInDatabase('fund_profile', ['profile_id' => $profileId, 'fund_id' => $fundId]);
+
+        $fundDbService = new FundDbService();
+
+        $I->assertEquals($fundId, $fundDbService->search('re')[0]['id']);// category
+        $I->assertEquals($fundId, $fundDbService->search('ategor')[0]['id']);// category
+        $I->assertEquals($fundId, $fundDbService->search('ink')[0]['id']); // link
+        $I->assertEquals($fundId, $fundDbService->search('rofil')[0]['id']); // link
+    }
 }
