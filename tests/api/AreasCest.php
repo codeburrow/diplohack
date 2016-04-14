@@ -1,5 +1,8 @@
-<?php
+<?php namespace tests\api;
 
+use ApiTester;
+use App\DbServices\AreaDbService;
+use App\Transformers\ApiAreasListTransformer;
 
 class AreasCest
 {
@@ -11,22 +14,17 @@ class AreasCest
     {
     }
 
-    /** @test */
+    /**
+     * @test
+     * @param ApiTester $I
+     */
     public function it_returns_areas_select_list(ApiTester $I)
     {
-        $I->haveInDatabase('areas', ['name' => 'area1']);
-        $I->haveInDatabase('areas', ['name' => 'area2']);
-//        $area
-//
-//        $expectedData = [
-//            [
-//                "id"   => $item["id"],
-//                "text" => $item["name"],
-//            ]
-//        ];
-
+        $areaService = new AreaDbService();
+        $apiAreasListTransformer = new ApiAreasListTransformer();
+        $areas = $areaService->get();
+        $expectedData = $apiAreasListTransformer->transformCollection($areas);
         $I->amOnPage('/api/v1/areas/list');
-
         $I->seeResponseContainsJson([
             'status_code' => 200,
             'data'        => $expectedData

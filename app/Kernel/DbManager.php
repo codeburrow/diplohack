@@ -23,15 +23,18 @@ class DbManager
      */
     private $dbConnection;
 
+    private $dbName;
+
     /**
      * DbManager constructor.
      */
     public function __construct()
     {
-//        var_dump(getenv('DB_NAME'));exit;
+        $this->setDbName(getenv('DB_NAME'));
+
         try {
             $this->dbConnection = new PDO(
-                'mysql:host='.getenv('DB_HOST').';'.'dbname='.getenv('DB_NAME').';'.'port='.getenv('DB_PORT'),
+                'mysql:host='.getenv('DB_HOST').';'.'dbname='.$this->getDbName().';'.'port='.getenv('DB_PORT'),
                 getenv('DB_USER'), getenv('DB_PASSWORD')
             );
 
@@ -41,6 +44,22 @@ class DbManager
         } catch (PDOException $e) {
             throw new Exception('Could not connect to the database.\n'.$e->getMessage().'\n\n');
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDbName()
+    {
+        return $this->dbName;
+    }
+
+    /**
+     * @param mixed $dbName
+     */
+    public function setDbName($dbName)
+    {
+        $this->dbName = $dbName;
     }
 
     /**

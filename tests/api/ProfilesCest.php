@@ -1,6 +1,6 @@
-<?php
+<?php namespace tests\api;
 
-
+use ApiTester;
 use App\DbServices\ProfileDbService;
 use App\Transformers\ApiProfilesListTransformer;
 

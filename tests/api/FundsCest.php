@@ -1,7 +1,8 @@
-<?php
+<?php namespace tests\api;
 
-use App\Manipulators\FundManipulator;
+use ApiTester;
 use App\DbServices\FundsDbService;
+use App\Manipulators\FundManipulator;
 use App\Transformers\ApiFundTransformer;
 
 class FundsCest
