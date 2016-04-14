@@ -3,7 +3,8 @@
 use ApiTester;
 use App\DbServices\FundDbService;
 use App\Manipulators\FundManipulator;
-use App\Transformers\ApiFundTransformer;
+use App\Transformers\ApiGetFundTransformer;
+use App\Transformers\ApiSearchFundTransformer;
 
 class FundsCest
 {
@@ -19,7 +20,7 @@ class FundsCest
     public function it_returns_all_funds(ApiTester $I)
     {
         $fundsService = new FundDbService();
-        $apiFundTransformer = new ApiFundTransformer();
+        $apiFundTransformer = new ApiGetFundTransformer();
         $fundManipulator = new FundManipulator();
         $expectedData = $apiFundTransformer
             ->transformCollection($fundManipulator
@@ -37,16 +38,13 @@ class FundsCest
     public function it_searches_funds(ApiTester $I)
     {
         $fundsService = new FundDbService();
-        $apiFundTransformer = new ApiFundTransformer();
+        $apiSearchFundTransformer = new ApiSearchFundTransformer();
         $fundManipulator = new FundManipulator();
         $allFunds = $fundsService->get();
 
 
         $expectedData = $fundsService->search($allFunds[0]['title']);
-        var_dump($expectedData);exit;
-        $expectedData = $fundManipulator->concatenateLinks($expectedData);
-        $expectedData = $apiFundTransformer->transformCollection($expectedData);
-
+        $expectedData = $apiSearchFundTransformer->transformCollection($expectedData);
 
         $I->amOnPage('/api/v1/funds/search?term='.$allFunds[0]['title']);
 

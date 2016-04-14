@@ -15,10 +15,11 @@ class FundDbService extends DbManager
     public function get()
     {
         $query = "
-            SELECT funds.id, funds.title, funds.description, links.url
+            SELECT funds.id, funds.title, funds.description, GROUP_CONCAT(`links`.`url`) as urls
             FROM `".getenv('DB_NAME')."`.`funds`
             INNER JOIN fund_link ON fund_link.fund_id = funds.id
-            INNER JOIN links ON fund_link.link_id = links.id;
+            INNER JOIN links ON fund_link.link_id = links.id 
+            GROUP BY funds.id;
             ";
 
         $statement = $this->getConnection()->prepare($query);
@@ -35,7 +36,7 @@ class FundDbService extends DbManager
     public function search($term)
     {
         $query = "
-            SELECT DISTINCT funds.id, funds.title, funds.description, links.url
+            SELECT funds.id, funds.title, funds.description, GROUP_CONCAT(DISTINCT `links`.`url`) as urls
             FROM `".getenv('DB_NAME')."`.`funds`
             INNER JOIN fund_link ON fund_link.fund_id = funds.id
             INNER JOIN links ON fund_link.link_id = links.id
@@ -48,7 +49,8 @@ class FundDbService extends DbManager
             WHERE funds.title LIKE :term OR funds.description LIKE :term OR links.url LIKE :term 
             OR areas.name LIKE :term OR areas.description LIKE :term 
             OR categories.name LIKE :term OR categories.description LIKE :term 
-            OR profiles.name LIKE :term OR profiles.description LIKE :term ;
+            OR profiles.name LIKE :term OR profiles.description LIKE :term 
+            GROUP BY funds.id;
             ";
 
         $statement = $this->getConnection()->prepare($query);
@@ -58,7 +60,7 @@ class FundDbService extends DbManager
         if (! $statement->execute()) {
             return false;
         }
-
+        
         return $statement->fetchAll();
     }
 

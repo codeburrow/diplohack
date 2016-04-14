@@ -177,12 +177,14 @@ class FundsCest
         $areaId = $I->haveInDatabase('areas', ['name' => 'area-name']);
         $categoryId = $I->haveInDatabase('categories', ['name' => 'category-name']);
         $linkId = $I->haveInDatabase('links', ['url' => 'link-url']);
+        $linkId2 = $I->haveInDatabase('links', ['url' => 'link-url-2']);
         $profileId = $I->haveInDatabase('profiles', ['name' => 'profile-name']);
 
         // relations
         $I->haveInDatabase('area_fund', ['area_id' => $areaId, 'fund_id' => $fundId]);
         $I->haveInDatabase('category_fund', ['category_id' => $categoryId, 'fund_id' => $fundId]);
         $I->haveInDatabase('fund_link', ['link_id' => $linkId, 'fund_id' => $fundId]);
+        $I->haveInDatabase('fund_link', ['link_id' => $linkId2, 'fund_id' => $fundId]);
         $I->haveInDatabase('fund_profile', ['profile_id' => $profileId, 'fund_id' => $fundId]);
 
         $fundDbService = new FundDbService();

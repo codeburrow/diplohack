@@ -5,10 +5,11 @@
  */
 namespace App\Controllers\Api;
 
-use App\Manipulators\FundManipulator;
 use App\DbServices\FundDbService;
 use App\DbServices\LinkDbService;
-use App\Transformers\ApiFundTransformer;
+use App\Manipulators\FundManipulator;
+use App\Transformers\ApiGetFundTransformer;
+use App\Transformers\ApiSearchFundTransformer;
 
 /**
  * Class WelcomeController.
@@ -24,9 +25,13 @@ class ApiFundsController extends ApiController
      */
     protected $linkService;
     /**
-     * @var ApiFundTransformer
+     * @var ApiSearchFundTransformer
      */
-    private $apifundsTransformer;
+    protected $apiSearchFundTransformer;
+    /**
+     * @var ApiGetFundTransformer
+     */
+    private $apiGetFundsTransformer;
 
     /**
      * @var FundDbService
@@ -38,7 +43,8 @@ class ApiFundsController extends ApiController
      */
     public function __construct()
     {
-        $this->apifundsTransformer = new ApiFundTransformer();
+        $this->apiGetFundsTransformer = new ApiGetFundTransformer();
+        $this->apiSearchFundTransformer = new ApiSearchFundTransformer();
         $this->fundsService = new FundDbService();
         $this->linkService = new LinkDbService();
         $this->fundManipulator = new FundManipulator();
@@ -105,7 +111,7 @@ class ApiFundsController extends ApiController
         $funds = $this->fundManipulator->concatenateLinks($funds);
 
         return $this->respondWithSuccess(
-            $this->apifundsTransformer->transformCollection($funds)
+            $this->apiGetFundsTransformer->transformCollection($funds)
         );
     }
 
@@ -171,16 +177,14 @@ class ApiFundsController extends ApiController
      */
     public function search()
     {
-        if (!isset($_GET['term'])) return $this->respondUnprocessableEntity();
+        if (! isset($_GET['term'])) return $this->respondUnprocessableEntity();
 
         $funds = $this->fundsService->search($_GET['term']);
 
         if ($funds === false) return $this->respondInternalServerError();
 
-        $funds = $this->fundManipulator->concatenateLinks($funds);
-
         return $this->respondWithSuccess(
-            $this->apifundsTransformer->transformCollection($funds)
+            $this->apiSearchFundTransformer->transformCollection($funds)
         );
     }
 }

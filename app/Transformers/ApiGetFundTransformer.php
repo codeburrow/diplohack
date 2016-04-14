@@ -3,7 +3,7 @@
 /**
  * Class ApiFundTransformer.
  */
-class ApiFundTransformer extends Transformer
+class ApiGetFundTransformer extends Transformer
 {
     /**
      * @param $item
@@ -15,7 +15,8 @@ class ApiFundTransformer extends Transformer
         return [
             "title"       => $item["title"],
             "description" => $item["description"],
-            "urls"        => $item["urls"],
+            "urls"        =>  $item["urls"],
+//            "urls"        => explode(',', $item["urls"]),
         ];
     }
 }

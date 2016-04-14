@@ -30,9 +30,10 @@ class FundLinkTableMigration implements Migration
                   `id` INT NOT NULL AUTO_INCREMENT,
                   `fund_id` INT NOT NULL,
                   `link_id` INT NOT NULL,
-                  PRIMARY KEY (`id`),
+                  PRIMARY KEY (`id`, `fund_id`, `link_id`),
                   INDEX `fk_fund_link_link_id_idx` (`link_id` ASC),
                   INDEX `fk_fund_link_fund_id_idx` (`fund_id` ASC),
+                  UNIQUE INDEX `fk_unique_index` (`fund_id` ASC, `link_id` ASC),
                   CONSTRAINT `fk_fund_link_link_id`
                     FOREIGN KEY (`link_id`)
                     REFERENCES `'.getenv('DB_NAME').'`.`'.LinksTableMigration::TABLE_NAME.'` (`id`)
