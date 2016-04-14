@@ -178,5 +178,17 @@ class FundDbService extends DbManager
 
         return $statement->execute();
     }
+
+    public function assignProfileById($fundId, $profileId)
+    {
+        $query = 'INSERT INTO `'.getenv('DB_NAME').'`.`fund_profile` (`profile_id`, `fund_id`) VALUES (:profileId, :fundId);';
+
+        $statement = $this->getConnection()->prepare($query);
+
+        $statement->bindParam(':fundId', $fundId, PDO::PARAM_INT);
+        $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
+
+        return $statement->execute();
+    }
 }
 

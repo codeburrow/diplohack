@@ -145,4 +145,23 @@ class FundsCest
 
         $I->seeInDatabase('fund_link', ['link_id' => $linkId, 'fund_id' => $fundId]);
     }
+
+    /**
+     * @test
+     * @param IntegrationTester $I
+     */
+    public function it_assigns_profile_by_id(IntegrationTester $I)
+    {
+        $fundDbService = new FundDbService();
+        $I->haveInDatabase('funds', ['title' => 'fund-title']);
+        $I->haveInDatabase('profiles', ['name' => 'profile-name']);
+        $fundId = $I->grabFromDatabase('funds', 'id', ['title' => 'fund-title']);
+        $profileId = $I->grabFromDatabase('profiles', 'id', ['name' => 'profile-name']);
+
+        $I->dontSeeInDatabase('fund_profile', ['profile_id' => $profileId, 'fund_id' => $fundId]);
+
+        $fundDbService->assignProfileById($fundId, $profileId);
+
+        $I->seeInDatabase('fund_profile', ['profile_id' => $profileId, 'fund_id' => $fundId]);
+    }
 }

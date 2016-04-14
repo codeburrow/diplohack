@@ -41,10 +41,12 @@ class FundsCest
         $fundManipulator = new FundManipulator();
         $allFunds = $fundsService->get();
 
+
         $expectedData = $fundsService->search($allFunds[0]['title']);
-        $expectedData = $apiFundTransformer
-            ->transformCollection($fundManipulator
-                ->concatenateLinks($expectedData));
+        var_dump($expectedData);exit;
+        $expectedData = $fundManipulator->concatenateLinks($expectedData);
+        $expectedData = $apiFundTransformer->transformCollection($expectedData);
+
 
         $I->amOnPage('/api/v1/funds/search?term='.$allFunds[0]['title']);
 
