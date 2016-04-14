@@ -90,4 +90,5 @@ class CategoryDbService extends DbManager
 
         return $this->getConnection()->lastInsertId();
     }
+
 }

@@ -87,4 +87,5 @@ class CategoriesCest
         $I->assertEquals($expectedData['name'], $actualCategory['name']);
         $I->seeInDatabase('categories', $expectedData);
     }
+
 }
