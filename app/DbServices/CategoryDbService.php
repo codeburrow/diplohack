@@ -45,7 +45,9 @@ class CategoryDbService extends DbManager
             return $category;
         }
 
-        return $this->create(['name' => $name]);
+        return $this->findById(
+            $this->create(['name' => $name])
+        );
     }
 
     public function findByName($name)
@@ -54,6 +56,18 @@ class CategoryDbService extends DbManager
 
         $statement = $this->getConnection()->prepare($query);
         $statement->bindParam(':name', $name, PDO::PARAM_STR);
+
+        $statement->execute();
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function findById($id)
+    {
+        $query = 'SELECT * FROM `'.getenv('DB_NAME').'`.`categories` WHERE `id` = :id';
+
+        $statement = $this->getConnection()->prepare($query);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
 
         $statement->execute();
 
@@ -75,17 +89,5 @@ class CategoryDbService extends DbManager
         $statement->execute();
 
         return $this->getConnection()->lastInsertId();
-    }
-
-    public function findById($id)
-    {
-        $query = 'SELECT * FROM `'.getenv('DB_NAME').'`.`categories` WHERE `id` = :id';
-
-        $statement = $this->getConnection()->prepare($query);
-        $statement->bindParam(':id', $id, PDO::PARAM_INT);
-
-        $statement->execute();
-
-        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 }

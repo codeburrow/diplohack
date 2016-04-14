@@ -84,11 +84,7 @@ class CategoriesCest
         $expectedData = ['name' => 'expected-name-1'];
         $I->dontSeeInDatabase('categories', $expectedData);
         $I->assertNotSame(false, $actualCategory = $categoryDbService->findOrCreateByName($expectedData['name']));
-
-        codecept_debug($actualCategory);;
-        exit;
-
-//        $I->assertEquals($expectedData['name'], $actualCategory['name']);
+        $I->assertEquals($expectedData['name'], $actualCategory['name']);
         $I->seeInDatabase('categories', $expectedData);
     }
 }
