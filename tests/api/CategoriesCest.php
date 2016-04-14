@@ -1,7 +1,7 @@
-<?php
+<?php namespace tests\api;
 
-
-use App\Services\CategoryService;
+use ApiTester;
+use App\DbServices\CategoryDbService;
 use App\Transformers\ApiCategoryListTransformer;
 
 class CategoriesCest
@@ -14,10 +14,13 @@ class CategoriesCest
     {
     }
 
-    /** @test */
+    /**
+     * @test
+     * @param ApiTester $I
+     */
     public function it_returns_categories_select_list(ApiTester $I)
     {
-        $categoryService = new CategoryService();
+        $categoryService = new CategoryDbService();
         $apiCategoryListTransformer = new ApiCategoryListTransformer();
         $areas = $categoryService->get();
 

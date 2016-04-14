@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Services\ProfileService;
+use App\DbServices\ProfileDbService;
 use App\Transformers\ApiProfilesListTransformer;
 
 class ProfilesCest
@@ -18,7 +18,7 @@ class ProfilesCest
     /** @test */
     public function it_returns_profiles_select_list(ApiTester $I)
     {
-        $profileService = new ProfileService();
+        $profileService = new ProfileDbService();
         $apiProfilesListTransformer = new ApiProfilesListTransformer();
         $areas = $profileService->get();
 

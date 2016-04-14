@@ -5,7 +5,7 @@
  */
 namespace App\Controllers\Api;
 
-use App\Services\ProfileService;
+use App\DbServices\ProfileDbService;
 use App\Transformers\ApiProfilesListTransformer;
 
 /**
@@ -21,7 +21,7 @@ class ApiProfilesController extends ApiController
      */
     public function __construct()
     {
-        $this->profileService = new ProfileService();
+        $this->profileService = new ProfileDbService();
         $this->apiProfilesListTransformer = new ApiProfilesListTransformer();
     }
 

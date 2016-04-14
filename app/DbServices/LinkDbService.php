@@ -3,7 +3,7 @@
  * @author Rizart Dokollari <r.dokollari@gmail.com>
  * @since 4/9/16
  */
-namespace App\Services;
+namespace App\DbServices;
 
 use App\Kernel\DbManager;
 use PDO;
@@ -11,7 +11,7 @@ use PDO;
 /**
  * Class DistrictService.
  */
-class LinkService extends DbManager
+class LinkDbService extends DbManager
 {
     public function get()
     {

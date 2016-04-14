@@ -5,7 +5,7 @@
  */
 namespace App\Controllers\Api;
 
-use App\Services\AreaService;
+use App\DbServices\AreaDbService;
 use App\Transformers\ApiAreasListTransformer;
 use App\Transformers\ApiProfilesListTransformer;
 
@@ -19,7 +19,7 @@ use App\Transformers\ApiProfilesListTransformer;
 class ApiAreasController extends ApiController
 {
     /**
-     * @var AreaService
+     * @var AreaDbService
      */
     protected $areaService;
     protected $apiAreasListTransformer;
@@ -29,7 +29,7 @@ class ApiAreasController extends ApiController
      */
     public function __construct()
     {
-        $this->areaService = new AreaService();
+        $this->areaService = new AreaDbService();
         $this->apiAreasListTransformer = new ApiAreasListTransformer();
     }
 

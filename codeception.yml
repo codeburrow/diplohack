@@ -15,7 +15,7 @@ extensions:
 modules:
     config:
         Db:
-            dsn: 'mysql:host=localhost;dbname=testdiplohackdb'
+            dsn: 'mysql:host=localhost;dbname=diplohack'
             user: 'homestead'
             password: 'secret'
             dump: tests/_data/dump.sql

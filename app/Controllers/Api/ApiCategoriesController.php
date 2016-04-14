@@ -5,8 +5,8 @@
  */
 namespace App\Controllers\Api;
 
-use App\Services\CategoryService;
-use App\Services\AreaService;
+use App\DbServices\CategoryDbService;
+use App\DbServices\AreaDbService;
 use App\Transformers\ApiCategoryListTransformer;
 
 /**
@@ -19,7 +19,7 @@ use App\Transformers\ApiCategoryListTransformer;
 class ApiCategoriesController extends ApiController
 {
     /**
-     * @var AreaService
+     * @var AreaDbService
      */
     protected $categoryService;
     protected $apiCategoryListTransformer;
@@ -29,7 +29,7 @@ class ApiCategoriesController extends ApiController
      */
     public function __construct()
     {
-        $this->categoryService = new CategoryService();
+        $this->categoryService = new CategoryDbService();
         $this->apiCategoryListTransformer = new ApiCategoryListTransformer();
     }
 

@@ -3,14 +3,14 @@
  * @author Rizart Dokollari <r.dokollari@gmail.com>
  * @since 4/9/16
  */
-namespace App\Services;
+namespace App\DbServices;
 
 use App\Kernel\DbManager;
 
 /**
  * Class DistrictService.
  */
-class AreaService extends DbManager
+class AreaDbService extends DbManager
 {
     public function get()
     {

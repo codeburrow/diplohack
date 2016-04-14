@@ -1,10 +1,10 @@
-<?php namespace App\Services;
+<?php namespace App\DbServices;
 
 use App\Kernel\DbManager;
 use Database;
 use PDO;
 
-class FundsService extends DbManager
+class FundsDbService extends DbManager
 {
     public function get()
     {

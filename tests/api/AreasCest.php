@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Services\AreaService;
+use App\DbServices\AreaDbService;
 use App\Transformers\ApiAreasListTransformer;
 
 class AreasCest
@@ -17,7 +17,7 @@ class AreasCest
     /** @test */
     public function it_returns_areas_select_list(ApiTester $I)
     {
-        $areaService = new AreaService();
+        $areaService = new AreaDbService();
         $apiAreasListTransformer = new ApiAreasListTransformer();
         $areas = $areaService->get();
 

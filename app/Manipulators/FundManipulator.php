@@ -5,7 +5,7 @@
  */
 namespace App\Manipulators;
 
-use App\Services\LinkService;
+use App\DbServices\LinkDbService;
 use App\Transformers\LinkOnlyTransformer;
 
 /**
@@ -18,7 +18,7 @@ class FundManipulator
 
     public function __construct()
     {
-        $this->linkService = new LinkService();
+        $this->linkService = new LinkDbService();
         $this->linkOnlyTransformer = new LinkOnlyTransformer();
     }
 
