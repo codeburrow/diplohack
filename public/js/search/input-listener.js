@@ -21,10 +21,9 @@ $(document).ready(function () {
                 $.each(funds, function (i, item) {
                     var urls = '';
 
-                    console.log(item.urls[0].url);
-
                     for (var index = 0; index < item.urls.length; index++) {
-                        urls = urls + item.urls[index].url + '<br/>';
+                        console.log(item.urls[index]);
+                        urls = urls + item.urls[index]+ '<br/>';
                     }
 
                     var fund = $('<tr>').append(
