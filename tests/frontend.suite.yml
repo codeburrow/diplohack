@@ -2,6 +2,6 @@ class_name: FrontendTester
 modules:
     enabled:
         - WebDriver:
-            url: 'http://diplohack.app/'
+            url: 'https://diplohack.app/'
             browser: phantomjs
         - \Helper\Frontend

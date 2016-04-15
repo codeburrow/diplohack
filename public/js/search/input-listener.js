@@ -22,7 +22,6 @@ $(document).ready(function () {
                     var urls = '';
 
                     for (var index = 0; index < item.urls.length; index++) {
-                        console.log(item.urls[index]);
                         urls = urls + item.urls[index]+ '<br/>';
                     }
 

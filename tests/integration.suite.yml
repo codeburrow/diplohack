@@ -2,7 +2,7 @@ class_name: IntegrationTester
 modules:
     enabled:
         - PhpBrowser:
-            url: 'http://diplohack.app/'
+            url: 'https://diplohack.app/'
             browser: phantomjs
         - Db
         - \Helper\Integration

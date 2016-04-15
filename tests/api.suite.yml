@@ -4,8 +4,8 @@ modules:
         - \Helper\Acceptance
         - Asserts
         - PhpBrowser:
-            url: 'http://diplohack.app/'
+            url: 'https://diplohack.app/'
             browser: phantomjs
         - REST:
             depends: PhpBrowser
-            url: 'http://diplohack.app/'
+            url: 'https://diplohack.app/'
