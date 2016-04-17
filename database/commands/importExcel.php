@@ -5,23 +5,38 @@
  */
 use App\DbServices\AreaDbService;
 use App\DbServices\CategoryDbService;
+use App\DbServices\DropBoxTokenDbService;
 use App\DbServices\FundDbService;
 use App\DbServices\LinkDbService;
 use App\DbServices\ProfileDbService;
+use Dropbox\Client;
 
 require __DIR__.'/../../vendor/autoload.php';
 require __DIR__.'/../../app/bootstrap.php';
 
 require __DIR__.'/provision.php';
 
-$excelFileLocation = __DIR__.'/../../storage/data_set.xlsx';
+$excelPath = __DIR__.'/../../storage/data_set.xlsx';
+$excelName = 'data_set.xlsx';
+
+$dropBoxTokenDbService = new DropBoxTokenDbService();
+$accessToken = $dropBoxTokenDbService->getLastToken();
+
+$dbxClient = new Client($accessToken, "PHP-Example/1.0");
+
+$file = fopen($excelPath.$fileName, "w+b");
+
+$fileMetadata = $dbxClient->getFile("/$excelName", $file);
+
+fclose($file);
+print_r($fileMetadata);
 
 $categoryDbService = new CategoryDbService();
 $profileDbService = new ProfileDbService();
 $fundDbService = new FundDbService();
 $linkDbService = new LinkDbService();
 $areaDbService = new AreaDbService();
-$phpExcel = PHPExcel_IOFactory::load($excelFileLocation);
+$phpExcel = PHPExcel_IOFactory::load($excelPath);
 
 $sheet = $phpExcel->getSheet(0);
 $highestRow = $sheet->getHighestRow();

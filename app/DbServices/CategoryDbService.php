@@ -28,7 +28,7 @@ class CategoryDbService extends DbManager
             return false;
         }
 
-        $routes = $statement->fetchAll();
+        $routes = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $routes;
     }

@@ -4,6 +4,7 @@
  * @author Rizart Dokollar <r.dokollari@gmail.com
  * @since 4/16/16
  */
+use App\DbServices\DropBoxTokenDbService;
 use App\Kernel\IoC;
 use Dropbox\AppInfo;
 use Dropbox\Client;
@@ -30,12 +31,6 @@ $accountInfo = $dbxClient->getAccountInfo();
 
 print_r($accountInfo);
 
-$dropBoxTokens = IoC::resolve(DropBoxTokenDbService::class);
+$dropBoxTokenDbService = IoC::resolve(DropBoxTokenDbService::class);
 
-//$fileName = 'data_set.xlsx';
-//$filePath = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR;
-//
-//$file = fopen($filePath.$fileName, "w+b");
-//$fileMetadata = $dbxClient->getFile("/$fileName", $file);
-//fclose($file);
-//print_r($fileMetadata);
+$dropBoxTokenDbService->create(['token' => $accessToken]);

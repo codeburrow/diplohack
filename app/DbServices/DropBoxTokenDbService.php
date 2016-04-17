@@ -12,7 +12,7 @@ use PDO;
 class DropBoxTokenDbService extends DbManager
 {
     /**
-     * Token key is required.
+     * Token key 'token' is required.
      *
      * @param $data
      * @return string
@@ -34,5 +34,21 @@ class DropBoxTokenDbService extends DbManager
         $statement->execute();
 
         return $this->getConnection()->lastInsertId();
+    }
+
+    /**
+     * @return array
+     */
+    public function getLatest()
+    {
+        $query = "
+            SELECT * FROM drop_box_tokens WHERE id = (SELECT MAX(id) FROM drop_box_tokens);
+            ";
+
+        $statement = $this->getConnection()->prepare($query);
+
+        $statement->execute();
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 }

@@ -23,9 +23,7 @@ class AreaDbService extends DbManager
             return false;
         }
 
-        $routes = $statement->fetchAll();
-
-        return $routes;
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function findOrCreateByName($name)
@@ -51,6 +49,18 @@ class AreaDbService extends DbManager
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findById($id)
+    {
+        $query = 'SELECT * FROM `'.getenv('DB_NAME').'`.`areas` WHERE `id` = :id';
+
+        $statement = $this->getConnection()->prepare($query);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function create($data)
     {
         $query = 'INSERT INTO `'.getenv('DB_NAME').'`.`areas` (`name`, `description`) VALUES (:name, :description);';
@@ -66,17 +76,5 @@ class AreaDbService extends DbManager
         $statement->execute();
 
         return $this->getConnection()->lastInsertId();
-    }
-
-    public function findById($id)
-    {
-        $query = 'SELECT * FROM `'.getenv('DB_NAME').'`.`areas` WHERE `id` = :id';
-
-        $statement = $this->getConnection()->prepare($query);
-        $statement->bindParam(':id', $id, PDO::PARAM_INT);
-
-        $statement->execute();
-
-        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 }

@@ -26,7 +26,7 @@ class FundDbService extends DbManager
 
         $statement->execute();
 
-        return $statement->fetchAll();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -61,7 +61,7 @@ class FundDbService extends DbManager
             return false;
         }
         
-        return $statement->fetchAll();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**

@@ -23,7 +23,7 @@ class LinkDbService extends DbManager
             return false;
         }
 
-        $routes = $statement->fetchAll();
+        $routes = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $routes;
     }
@@ -39,7 +39,7 @@ class LinkDbService extends DbManager
             return false;
         }
 
-        $results = $statement->fetchAll();
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $results;
     }
