@@ -165,7 +165,6 @@ class FundsCest
         $I->seeInDatabase('fund_profile', ['profile_id' => $profileId, 'fund_id' => $fundId]);
     }
 
-
     /**
      * @test
      * @param IntegrationTester $I

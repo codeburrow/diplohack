@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 5.7.9, for linux-glibc2.5 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.11, for Linux (x86_64)
 --
--- Host: 192.168.10.10    Database: new_diplohack
+-- Host: localhost    Database: diplohack
 -- ------------------------------------------------------
 -- Server version	5.7.11
 
@@ -14,25 +14,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `area_fund`
---
-
-DROP TABLE IF EXISTS `area_fund`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `area_fund` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `area_id` int(11) NOT NULL,
-  `fund_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_area_fund_area_id_idx` (`area_id`),
-  KEY `fk_area_fund_fund_id_idx` (`fund_id`),
-  CONSTRAINT `fk_area_fund_area_id` FOREIGN KEY (`area_id`) REFERENCES `areas` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `fk_area_fund_fund_id` FOREIGN KEY (`fund_id`) REFERENCES `funds` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `areas`
@@ -50,6 +31,15 @@ CREATE TABLE `areas` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `areas`
+--
+
+LOCK TABLES `areas` WRITE;
+/*!40000 ALTER TABLE `areas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `areas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `categories`
 --
 
@@ -63,6 +53,15 @@ CREATE TABLE `categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `categories`
+--
+
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `category_fund`
@@ -84,6 +83,40 @@ CREATE TABLE `category_fund` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `category_fund`
+--
+
+LOCK TABLES `category_fund` WRITE;
+/*!40000 ALTER TABLE `category_fund` DISABLE KEYS */;
+/*!40000 ALTER TABLE `category_fund` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `drop_box_tokens`
+--
+
+DROP TABLE IF EXISTS `drop_box_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `drop_box_tokens` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `token` text NOT NULL,
+  `description` text,
+  `created_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `drop_box_tokens`
+--
+
+LOCK TABLES `drop_box_tokens` WRITE;
+/*!40000 ALTER TABLE `drop_box_tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `drop_box_tokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `fund_link`
 --
 
@@ -94,13 +127,23 @@ CREATE TABLE `fund_link` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fund_id` int(11) NOT NULL,
   `link_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`,`fund_id`,`link_id`),
+  UNIQUE KEY `fk_unique_index` (`fund_id`,`link_id`),
   KEY `fk_fund_link_link_id_idx` (`link_id`),
   KEY `fk_fund_link_fund_id_idx` (`fund_id`),
   CONSTRAINT `fk_fund_link_fund_id` FOREIGN KEY (`fund_id`) REFERENCES `funds` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_fund_link_link_id` FOREIGN KEY (`link_id`) REFERENCES `links` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fund_link`
+--
+
+LOCK TABLES `fund_link` WRITE;
+/*!40000 ALTER TABLE `fund_link` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fund_link` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `fund_profile`
@@ -122,6 +165,15 @@ CREATE TABLE `fund_profile` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `fund_profile`
+--
+
+LOCK TABLES `fund_profile` WRITE;
+/*!40000 ALTER TABLE `fund_profile` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fund_profile` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `funds`
 --
 
@@ -135,6 +187,15 @@ CREATE TABLE `funds` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `funds`
+--
+
+LOCK TABLES `funds` WRITE;
+/*!40000 ALTER TABLE `funds` DISABLE KEYS */;
+/*!40000 ALTER TABLE `funds` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `links`
@@ -152,6 +213,15 @@ CREATE TABLE `links` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `links`
+--
+
+LOCK TABLES `links` WRITE;
+/*!40000 ALTER TABLE `links` DISABLE KEYS */;
+/*!40000 ALTER TABLE `links` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `profiles`
 --
 
@@ -165,6 +235,15 @@ CREATE TABLE `profiles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `profiles`
+--
+
+LOCK TABLES `profiles` WRITE;
+/*!40000 ALTER TABLE `profiles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `profiles` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -175,4 +254,4 @@ CREATE TABLE `profiles` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-14 12:07:09
+-- Dump completed on 2016-04-17  2:24:20

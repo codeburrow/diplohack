@@ -1,3 +1,3 @@
 <?php
-putenv('DB_NAME=test_diplohack');
 
+putenv('DB_NAME=test_diplohack');
