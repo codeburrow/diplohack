@@ -27,9 +27,6 @@ list($accessToken, $dropboxUserId) = $webAuth->finish($authCode);
 print "Access Token: ".$accessToken."\n";
 
 $dbxClient = new Client($accessToken, "PHP-Example/1.0");
-$accountInfo = $dbxClient->getAccountInfo();
-
-print_r($accountInfo);
 
 $dropBoxTokenDbService = IoC::resolve(DropBoxTokenDbService::class);
 

@@ -25,9 +25,8 @@ class DatabaseMigration implements Migration
         LinksTableMigration::up();
         ProfilesTableMigration::up();
         DropBoxTokensTableMigration::up();
-
         // Relation tables
-//        AreaFundTableMigration::up();
+        AreaFundTableMigration::up();
         CategoryFundTableMigration::up();
         FundLinkTableMigration::up();
         FundProfileTableMigration::up();
@@ -41,7 +40,7 @@ class DatabaseMigration implements Migration
     public static function down()
     {
         // Relation tables
-//        AreaFundTableMigration::down();
+        AreaFundTableMigration::down();
         CategoryFundTableMigration::down();
         FundLinkTableMigration::down();
         FundProfileTableMigration::down();

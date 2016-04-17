@@ -9,27 +9,60 @@ use App\DbServices\DropBoxTokenDbService;
 use App\DbServices\FundDbService;
 use App\DbServices\LinkDbService;
 use App\DbServices\ProfileDbService;
+use Database\migrations\AreaFundTableMigration;
+use Database\migrations\AreasTableMigration;
+use Database\migrations\CategoriesTableMigration;
+use Database\migrations\CategoryFundTableMigration;
+use Database\migrations\DropBoxTokensTableMigration;
+use Database\migrations\FundLinkTableMigration;
+use Database\migrations\FundProfileTableMigration;
+use Database\migrations\FundsTableMigration;
+use Database\migrations\LinksTableMigration;
+use Database\migrations\ProfilesTableMigration;
 use Dropbox\Client;
 
 require __DIR__.'/../../vendor/autoload.php';
 require __DIR__.'/../../app/bootstrap.php';
 
-require __DIR__.'/provision.php';
+// Relation tables
+AreaFundTableMigration::down();
+CategoryFundTableMigration::down();
+FundLinkTableMigration::down();
+FundProfileTableMigration::down();
+// Primary tables
+FundsTableMigration::down();
+AreasTableMigration::down();
+CategoriesTableMigration::down();
+LinksTableMigration::down();
+ProfilesTableMigration::down();
+// Primary tables
+FundsTableMigration::up();
+AreasTableMigration::up();
+CategoriesTableMigration::up();
+LinksTableMigration::up();
+ProfilesTableMigration::up();
+DropBoxTokensTableMigration::up();
+// Relation tables
+AreaFundTableMigration::up();
+CategoryFundTableMigration::up();
+FundLinkTableMigration::up();
+FundProfileTableMigration::up();
 
 $excelPath = __DIR__.'/../../storage/data_set.xlsx';
 $excelName = 'data_set.xlsx';
 
 $dropBoxTokenDbService = new DropBoxTokenDbService();
-$accessToken = $dropBoxTokenDbService->getLastToken();
+$accessToken = $dropBoxTokenDbService->getLatest()['token'];
 
 $dbxClient = new Client($accessToken, "PHP-Example/1.0");
 
-$file = fopen($excelPath.$fileName, "w+b");
+$excelFile = fopen($excelPath.$excelName, "w+b");
 
-$fileMetadata = $dbxClient->getFile("/$excelName", $file);
+echo "Retrieving $excelName from DropBox.\n";
 
-fclose($file);
-print_r($fileMetadata);
+$fileMetadata = $dbxClient->getFile("/$excelName", $excelFile);
+
+echo "DropBox file imported to $excelPath.\n";
 
 $categoryDbService = new CategoryDbService();
 $profileDbService = new ProfileDbService();
@@ -41,6 +74,8 @@ $phpExcel = PHPExcel_IOFactory::load($excelPath);
 $sheet = $phpExcel->getSheet(0);
 $highestRow = $sheet->getHighestRow();
 $highestColumn = $sheet->getHighestColumn();
+
+echo "Inserting excel data into database.\n";
 
 for ($row = 2; $row <= $highestRow; $row++) {
     $rowData = $sheet->rangeToArray('A'.$row.':'.$highestColumn.$row)[0];
@@ -67,3 +102,5 @@ for ($row = 2; $row <= $highestRow; $row++) {
     $fundDbService->assignLinkById($fund['id'], $link['id']);
     $fundDbService->assignProfileById($fund['id'], $profile['id']);
 }
+
+echo "Done.\n";
